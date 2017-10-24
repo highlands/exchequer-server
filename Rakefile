@@ -4,3 +4,7 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+# Clearing here because I want them to run in this order, specifically.
+task(:default).clear
+task default: %i[rubocop spec spinach]
