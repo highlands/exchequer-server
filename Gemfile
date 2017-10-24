@@ -35,6 +35,7 @@ group :development, :test do
   gem 'launchy', '~> 2.4.3'
   gem 'poltergeist', '~> 1.16.0'
   gem 'rspec-rails', '~> 3.7.1'
+  gem 'rubocop', '~> 0.51.0'
   gem 'selenium-webdriver', '~> 3.6.0'
   gem 'shoulda-matchers', '~> 3.1.2'
   gem 'simplecov', '~> 0.15.1', require: false
