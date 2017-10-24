@@ -3,6 +3,7 @@
 
 AllCops:
   TargetRubyVersion: 2.3
+  DisplayCopNames: true
   Exclude:
     - vendor/**/*
     - notes.*
@@ -19,13 +20,18 @@ Documentation:
   Enabled: false
 
 Metrics/CyclomaticComplexity:
-  Enabled: false
+  Enabled: true
 
 Metrics/BlockNesting:
-  Enabled: false
+  Enabled: true
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/rails_helper.rb
 
 Metrics/AbcSize:
-  Enabled: false
+  Enabled: true
 
 Metrics/LineLength:
   Enabled: false
@@ -54,7 +60,6 @@ Style/GuardClause:
 Layout/IndentHash:
   EnforcedStyle: consistent
 
-# FIXME: this is a judgement call, i prefer compact style
 Style/ClassAndModuleChildren:
   Enabled: false
 

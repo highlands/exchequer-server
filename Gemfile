@@ -16,7 +16,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -28,13 +28,25 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
+  gem 'capybara-selenium', '~> 0.0.6'
+  gem 'chromedriver-helper', '~> 1.1.0'
+  gem 'database_cleaner', '~> 1.6.1'
+  gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'launchy', '~> 2.4.3'
+  gem 'poltergeist', '~> 1.16.0'
+  gem 'rspec-rails', '~> 3.7.1'
+  gem 'selenium-webdriver', '~> 3.6.0'
+  gem 'shoulda-matchers', '~> 3.1.2'
+  gem 'simplecov', '~> 0.15.1', require: false
+  gem 'simplecov-json', require: false
+  gem 'spinach-rails', '~> 0.2.1'
+  gem 'webmock', '~> 3.1.0'
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~> 2.0.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
