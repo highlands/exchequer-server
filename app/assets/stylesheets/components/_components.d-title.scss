@@ -1,0 +1,24 @@
+.d-title {
+  color: white;
+  font-family: $secondary-font-family;
+  text-align: center;
+  text-shadow: 0 $point_three_rem $half_rem $blackboard;
+  text-transform: uppercase;
+  width: $full_percent;
+  @include lg {
+    font-size: $one_half_rem;
+  }
+  &.-hero {
+    font-size: $one_rem + $half_rem / 2;
+    font-weight: bold;
+    margin: 0 auto;
+    width: $three_quarter_percent + $five_percent;
+    @include lg {
+      font-size: $three_rem;
+      line-height: $three_rem;
+    }
+  }
+  &.-fullwidth {
+    width: $full_percent;
+  }
+}

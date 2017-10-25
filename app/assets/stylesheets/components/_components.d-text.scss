@@ -1,0 +1,35 @@
+.d-text {
+  color: $blackboard;
+  &.-center {
+    text-align: center;
+  }
+  &.-white {
+    color: white;
+    text-shadow: $point_one_rem $point_one_rem $point_three_five_rem lighten($blackboard, $ten_percent + $five_percent);
+  }
+  &.-big {
+    font-size: $one_half_rem;
+  }
+  &.-small {
+    font-size: $point_six_five_rem;
+    line-height: $point_eight_five_rem;
+  }
+  &.-newsletter {
+    margin-bottom: $one_half_rem;
+  }
+  &.-secondary {
+    font-family: $secondary-font-family;
+  }
+  &.-light {
+    font-weight: 300;
+  }
+  &.-mid-small {
+    font-size: $medium-font-size;
+  }
+  &.-smaller {
+    font-size: $small-font-size;
+  }
+  &.-vertical-margin {
+    margin: $half_rem auto;
+  }
+}

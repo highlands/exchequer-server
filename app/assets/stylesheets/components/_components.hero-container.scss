@@ -1,0 +1,11 @@
+.hero-container {
+  @include flex_centered();
+  align-content: unset;
+  overflow: hidden;
+  position: relative;
+  width: $full_percent;
+  padding: ($four_rem + $three_rem) $one_rem $three_rem;
+  @include md {
+    height: 100vh;
+  }
+}

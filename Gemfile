@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '~> 2.3.3'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
@@ -24,6 +24,12 @@ gem 'haml-rails', '~> 1.0'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
+
+## Asset bits
+gem 'haml', '~> 5.0'
+gem 'haml-rails', '~> 1.0'
+gem 'font-awesome-rails'
+gem 'purecss-sass', '~> 0.6.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

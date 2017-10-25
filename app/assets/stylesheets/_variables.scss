@@ -1,0 +1,62 @@
+// ========== Fonts ==========
+@import url(https://fonts.googleapis.com/css?family=Lato:300,300italic,400,700,700italic);
+
+@font-face {
+  font-family: 'montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url(font-path('montserrat-regular.eot'));
+  src: url(font-path('montserrat-regular.eot')),
+    url(font-path('montserrat-regular.eot') + "?#iefix") format('embedded-opentype'),
+    url(font-path('montserrat-regular.woff2')) format('woff2'),
+    url(font-path('montserrat-regular.woff')) format('woff'),
+    url(font-path('montserrat-regular.ttf'))  format('truetype'),
+    url(font-path('montserrat-regular.svg') + "#montserratregular") format('svg');
+}
+
+@font-face {
+  font-family: 'montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url(font-path('montserrat-bold.eot'));
+  src: url(font-path('montserrat-bold.eot')),
+    url(font-path('montserrat-bold.eot') + "?#iefix") format('embedded-opentype'),
+    url(font-path('montserrat-bold.woff2')) format('woff2'),
+    url(font-path('montserrat-bold.woff')) format('woff'),
+    url(font-path('montserrat-bold.ttf'))  format('truetype'),
+    url(font-path('montserrat-bold.svg') + "#montserratbold") format('svg');
+}
+
+@font-face {
+  font-family: 'montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: url(font-path('montserrat-black.eot'));
+  src: url(font-path('montserrat-black.eot')),
+    url(font-path('montserrat-black.eot') + "?#iefix") format('embedded-opentype'),
+    url(font-path('montserrat-black.woff2')) format('woff2'),
+    url(font-path('montserrat-black.woff')) format('woff'),
+    url(font-path('montserrat-black.ttf'))  format('truetype'),
+    url(font-path('montserrat-black.svg') + "#montserratbold") format('svg');
+}
+
+$primary-font-family: 'Lato', Helvetica, Arial, sans-serif, FontAwesome;
+$secondary-font-family: 'Montserrat', Helvetica, sans-serif;
+$medium-font-size: 0.75rem;
+$small-font-size: 0.5rem;
+
+// ========== Breakpoint ==========
+$n_xs: 20em; // extra small devices
+$x-sm: 30em;
+$n_sm: 35.5em; // small devices
+$n_md: 48em; // medium size devices
+$n_lg: 64em; // big size devices
+$n_xl: 80em; // desktop
+
+// ========== Colours ==========
+// please use http://chir.ag/projects/name-that-color for names
+$grain: #D7CEC7; // light grey for borders and letters
+$blackboard: #565656; //light black for backgrounds, main font color
+$oxblood: #76323F; // dark red for hightlights
+$wild_sand: #f5f5f5; // super light grey for backgrounds
+$tan: #C09F80; //super light brown for highlights
