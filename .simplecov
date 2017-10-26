@@ -1,11 +1,5 @@
 require 'simplecov-json'
 
-SimpleCov.use_merging true
-
-# FIXME: This coverage will need to be higher, but not sure how to make it work
-# with the default rake task yet
-SimpleCov.minimum_coverage 1
-
 SimpleCov.formatters = [
   SimpleCov::Formatter::HTMLFormatter,
   SimpleCov::Formatter::JSONFormatter
@@ -25,5 +19,8 @@ SimpleCov.start 'rails' do
   add_group 'Mailers', 'app/mailers'
   add_group 'Policies', 'app/policies'
 
+  # Merging
+  use_merging true
   merge_timeout 3600
+  minimum_coverage 90
 end
