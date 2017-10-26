@@ -36,6 +36,7 @@ db/*.sqlite3
 /gems
 /specifications
 rerun.txt
+/spec/examples.txt
 pickle-email-*.html
 .zeus.sock
 .rvmrc
