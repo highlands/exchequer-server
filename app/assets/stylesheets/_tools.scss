@@ -3,72 +3,37 @@
 // Media Queries
 
 @mixin xs {
-  @media (min-width: #{$n_xs}) {
-    @content;
-  }
-}
-
-@mixin x-sm {
-  @media (min-width: #{$x-sm}) {
+  @media (min-width: #{$xs}) {
     @content;
   }
 }
 
 @mixin sm {
-  @media (min-width: #{$n_sm}) {
+  @media (min-width: #{$sm}) {
     @content;
   }
 }
 
 @mixin md {
-  @media (min-width: #{$n_md}) {
+  @media (min-width: #{$md}) {
     @content;
   }
 }
 
 @mixin lg {
-  @media (min-width: #{$n_lg}) {
+  @media (min-width: #{$lg}) {
     @content;
   }
 }
 
 @mixin xl {
-  @media (min-width: #{$n_xl}) {
+  @media (min-width: #{$xl}) {
     @content;
   }
 }
 
 @mixin lg-down {
-  @media (max-width: #{$n_lg}) {
+  @media (max-width: #{$lg}) {
     @content;
   }
-}
-
-
-// Flex Mixins
-
-@mixin display_flex {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-@mixin flex_around {
-  @include display_flex();
-  justify-content: space-around;
-}
-
-@mixin flex_center {
-  @include display_flex();
-  justify-content: center;
-}
-
-@mixin flex_between {
-  @include display_flex();
-  justify-content: space-between;;
-}
-
-@mixin flex_centered {
-  @include flex_center();
-  align-items: center;
-  align-content: center;
 }
