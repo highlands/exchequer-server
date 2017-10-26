@@ -34,6 +34,7 @@ group :development, :test do
   gem 'chromedriver-helper', '~> 1.1.0'
   gem 'database_cleaner', '~> 1.6.1'
   gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'faker', '~> 1.8.4'
   gem 'launchy', '~> 2.4.3'
   gem 'poltergeist', '~> 1.16.0'
   gem 'rspec-rails', '~> 3.7.1'
