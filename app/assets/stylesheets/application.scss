@@ -16,12 +16,10 @@
 // Project requirements
 @import 'purecss';
 @import 'functions';
-@import 'variables';
-@import 'metrics';
+@import 'settings';
 @import 'tools';
 @import 'base';
-
-
-// Components
+@import './objects/*';
 @import './components/*';
-@import 'trumps';
+@import './trumps/*';
+
