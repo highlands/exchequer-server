@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~> 2.3.3'
+ruby '~> 2.4.2'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 # Enable HAML for views
-gem 'haml-rails', '~> 1.0'
+gem 'haml-rails', '~> 5.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -26,8 +26,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 
 ## Asset bits
-gem 'haml', '~> 5.0'
-gem 'haml-rails', '~> 1.0'
 gem 'font-awesome-rails'
 gem 'purecss-sass', '~> 0.6.2'
 

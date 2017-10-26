@@ -8,4 +8,12 @@
   @include md {
     height: 100vh;
   }
+  > .background {
+    background: $oxblood;
+    height: $full_percent;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $full_percent;
+  }
 }
