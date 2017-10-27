@@ -10,7 +10,7 @@ gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Active Admin
-# gem 'activeadmin', '~> 1.1.0'
+gem 'activeadmin', '~> 1.1.0'
 # Devise
 gem 'devise', '~> 4.3.0'
 # Use Puma as the app server

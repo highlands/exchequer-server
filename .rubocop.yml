@@ -27,6 +27,7 @@ Metrics/BlockNesting:
 
 Metrics/BlockLength:
   Enabled: true
+  Max: 50
   Exclude:
     - spec/rails_helper.rb
 
