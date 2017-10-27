@@ -21,7 +21,6 @@ WebMock.disable_net_connect!(allow_localhost: true)
 
 Spinach.hooks.before_scenario do
   DatabaseCleaner.clean
-  Capybara.current_session.current_window.resize_to(1920, 1080)
 end
 
 Capybara.asset_host = 'http://localhost:3000'
@@ -32,4 +31,5 @@ end
 
 Spinach.hooks.on_tag('javascript') do
   ::Capybara.current_driver = ::Capybara.javascript_driver
+  Capybara.current_session.current_window.resize_to(1920, 1080)
 end

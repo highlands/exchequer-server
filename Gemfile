@@ -9,6 +9,10 @@ end
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
+# Active Admin
+gem 'activeadmin', '~> 1.1.0'
+# Devise
+gem 'devise', '~> 4.3.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -41,6 +45,7 @@ group :development, :test do
   gem 'faker', '~> 1.8.4'
   gem 'launchy', '~> 2.4.3'
   gem 'poltergeist', '~> 1.16.0'
+  gem 'rails-controller-testing', '~> 1.0.2'
   gem 'rspec-rails', '~> 3.7.1'
   gem 'rubocop', '~> 0.51.0'
   gem 'selenium-webdriver', '~> 3.6.0'
