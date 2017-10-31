@@ -29,12 +29,12 @@ gem 'therubyracer', platforms: :ruby
 gem 'haml-rails', '~> 1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.7.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
 ## Asset bits
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7.0'
 gem 'purecss-sass', '~> 0.6.2'
 
 group :development, :test do
@@ -50,6 +50,7 @@ group :development, :test do
   gem 'launchy', '~> 2.4.3'
   gem 'poltergeist', '~> 1.16.0'
   gem 'rails-controller-testing', '~> 1.0.2'
+  gem 'rspec_api_documentation', '~> 5.1.0'
   gem 'rspec-rails', '~> 3.7.1'
   gem 'rubocop', '~> 0.51.0'
   gem 'selenium-webdriver', '~> 3.6.0'
