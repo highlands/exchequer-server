@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Application, type: :model do
+RSpec.describe App, type: :model do
   describe 'fields' do
     it { is_expected.to respond_to(:name) }
     it { is_expected.to respond_to(:api_keys) }
