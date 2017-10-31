@@ -4,5 +4,4 @@ class ApiKey < ApplicationRecord
   belongs_to :app
   has_secure_token :auth_token
   validates :app, presence: true
-  validates :auth_token, presence: true
 end
