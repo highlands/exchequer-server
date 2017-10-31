@@ -11,6 +11,8 @@ gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 # Active Admin
 gem 'activeadmin', '~> 1.1.0'
+# Active Model Serializers used for the API layer
+gem 'active_model_serializers', '~> 0.10.6'
 # Cancan for authorization
 gem 'cancan', '~> 1.6.10'
 # Devise
