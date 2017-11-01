@@ -19,13 +19,12 @@ class OauthAuthorization < ApplicationRecord
         return user
       end
     else
-      return OauthAuthorization.create_user_and_oauth_authorization
+      return OauthAuthorization.create_user_and_oauth_authorization(auth)
     end
   end
 
-  def self.create_user_and_oauth_authorization
+  def self.create_user_and_oauth_authorization(auth)
     user = User.create(email: auth[:info][:email],
-                       name: auth[:info][:name],
                        password: Devise.friendly_token[0, 20])
     user.oauth_authorizations.create(
       provider: auth[:provider],
