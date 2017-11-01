@@ -1,4 +1,4 @@
-class CallbacksController < ApplicationController
+class CallbacksController < Devise::OmniauthCallbacksController
   def github
     oauth_callback
   end
