@@ -26,6 +26,10 @@ gem 'therubyracer', platforms: :ruby
 # Enable HAML for views
 gem 'haml-rails', '~> 1.0'
 
+# OAuth
+gem 'omniauth', '~> 1.7.1'
+gem 'omniauth-github', '~> 1.3.0'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
