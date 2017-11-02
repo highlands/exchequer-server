@@ -14,6 +14,10 @@ RSpec.describe User, type: :model do
     it { is_expected.to respond_to(:last_sign_in_ip) }
   end
 
+  describe 'relations' do
+    it { is_expected.to have_many(:oauth_authorizations) }
+  end
+
   describe 'validations' do
     it { should validate_presence_of(:email) }
   end
