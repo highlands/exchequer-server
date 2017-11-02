@@ -332,6 +332,8 @@ GEM
       capybara (>= 2.0.0)
       railties (>= 3)
       spinach (>= 0.4)
+    spreedly (2.0.17)
+      nokogiri
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -409,6 +411,7 @@ DEPENDENCIES
   simplecov (~> 0.15.1)
   simplecov-json
   spinach-rails (~> 0.2.1)
+  spreedly (~> 2.0.17)
   spring (~> 2.0.2)
   spring-watcher-listen (~> 2.0.0)
   therubyracer

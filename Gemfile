@@ -26,6 +26,9 @@ gem 'therubyracer', platforms: :ruby
 # Enable HAML for views
 gem 'haml-rails', '~> 1.0'
 
+# Spreedly
+gem 'spreedly', '~> 2.0.17'
+
 # OAuth
 gem 'omniauth', '~> 1.6.1'
 gem 'omniauth-github', '~> 1.3.0'
