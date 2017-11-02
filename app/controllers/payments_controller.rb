@@ -6,5 +6,8 @@ class PaymentsController < ApplicationController
   def payment_method_added
     @error = params[:error]
     @token = params[:token]
+    # Handle User
+    user = User.first
+    PaymentMethod.create(user: user, token: @token)
   end
 end
