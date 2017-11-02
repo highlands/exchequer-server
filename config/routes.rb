@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'payments/form'
+  # PaymentMethod
+  get 'payments/add_payment_method'
   get 'payments/payment_method_added'
 
   ActiveAdmin.routes(self)
