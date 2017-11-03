@@ -8,6 +8,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in(:user, @user)
+      redirect_to add_payment_method_path
     else
       flash[:error] = @user.errors.full_messages
       redirect_to new_user_session_path
