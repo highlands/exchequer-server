@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :oauth_authorizations, dependent: :destroy
   has_many :payment_methods, dependent: :destroy
 
+  def payment_methods?
+    payment_methods.count.positive?
+  end
+
   private
 
   def default_values

@@ -7,7 +7,11 @@ class PaymentsController < ApplicationController
 
   def added
     @error = params[:error]
-    @token = params[:token]
-    PaymentMethod.create(user: current_user, token: @token) unless @error
+    token = params[:token]
+    unless @error
+      PaymentMethod.create(user: current_user, token: token) unless @error
+      flash[:success] = 'Payment method added'
+      redirect_to RedirectionManager.path_for(session[:from])
+    end
   end
 end
