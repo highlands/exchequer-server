@@ -3,4 +3,5 @@ class App < ApplicationRecord
   # All other data should be segmented by application.
   validates :name, presence: true
   has_many :api_keys, dependent: :destroy
+  has_many :offers, dependent: :destroy
 end
