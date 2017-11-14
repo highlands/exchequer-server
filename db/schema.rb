@@ -141,7 +141,6 @@ ActiveRecord::Schema.define(version: 20171102194159) do
   add_foreign_key "line_items", "coupons"
   add_foreign_key "line_items", "invoices"
   add_foreign_key "line_items", "offers"
-  add_foreign_key "offers", "apps"
   add_foreign_key "oauth_authorizations", "users"
   add_foreign_key "offers", "apps"
   add_foreign_key "payment_methods", "users"
