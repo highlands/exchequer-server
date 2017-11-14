@@ -5,7 +5,7 @@ class Api::V1::OffersController < Api::V1::ApiBaseController
   end
 
   def index
-    @offers = @app.offers
+    @offers = @manager.offers
     render json: @offers
   end
 
@@ -20,7 +20,7 @@ class Api::V1::OffersController < Api::V1::ApiBaseController
 
   def create
     @offer = Offer.new(offer_params)
-    @offer.app = @app
+    @offer.manager = @app
     if @offer.save
       render json: @offer
     else

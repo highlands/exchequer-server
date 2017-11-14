@@ -4,8 +4,8 @@ class Api::V1::ApiBaseController < ApplicationController
   protected
 
   def verify_auth_token
-    @app = ApiKey.find_by(auth_token: request.headers['Authentication']).try(:app)
-    unauthenticated_request unless @app
+    @manager = ApiKey.find_by(auth_token: request.headers['Authentication']).try(:manager)
+    unauthenticated_request unless @manager
   end
 
   def unauthenticated_request
