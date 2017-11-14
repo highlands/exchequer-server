@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # PaymentMethod
-  get 'payments/add', as: :add_payment
-  get 'payments/added', as: :payment_added
+  resources :payment_methods, only: [:new]
+  get 'payment_methods/added', as: :payment_added
+
+  # Checkouts
+  resources :checkouts
 
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { :omniauth_callbacks => 'callbacks' }

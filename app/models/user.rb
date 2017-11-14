@@ -5,6 +5,11 @@ class User < ApplicationRecord
     :validatable, :omniauthable, omniauth_providers: [:github]
   before_validation :default_values
   has_many :oauth_authorizations, dependent: :destroy
+  has_many :payment_methods, dependent: :destroy
+
+  def payment_method_present?
+    payment_methods.any?
+  end
 
   private
 

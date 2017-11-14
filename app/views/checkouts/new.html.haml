@@ -1,0 +1,11 @@
+- if @offer
+  %h1 Buy an Offer
+  %div
+    %h5 Name
+    = @offer.name
+  %div
+    %h5 Description
+    = @offer.description
+- else
+  %h2 There are no offers.
+
