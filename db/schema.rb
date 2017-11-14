@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029021751) do
+ActiveRecord::Schema.define(version: 20171102194159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 20171029021751) do
     t.index ["offer_id"], name: "index_line_items_on_offer_id"
   end
 
+  create_table "oauth_authorizations", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_oauth_authorizations_on_user_id"
+  end
+
   create_table "offers", force: :cascade do |t|
     t.bigint "app_id"
     t.string "description"
@@ -87,6 +96,14 @@ ActiveRecord::Schema.define(version: 20171029021751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["app_id"], name: "index_offers_on_app_id"
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payment_methods_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -111,6 +128,8 @@ ActiveRecord::Schema.define(version: 20171029021751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -123,5 +142,8 @@ ActiveRecord::Schema.define(version: 20171029021751) do
   add_foreign_key "line_items", "invoices"
   add_foreign_key "line_items", "offers"
   add_foreign_key "offers", "apps"
+  add_foreign_key "oauth_authorizations", "users"
+  add_foreign_key "offers", "apps"
+  add_foreign_key "payment_methods", "users"
   add_foreign_key "payments", "invoices"
 end

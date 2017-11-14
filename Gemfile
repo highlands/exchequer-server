@@ -28,10 +28,19 @@ gem 'therubyracer', platforms: :ruby
 # Enable HAML for views
 gem 'haml-rails', '~> 1.0'
 
+# Spreedly
+gem 'spreedly', '~> 2.0.17'
+
+# OAuth
+gem 'omniauth', '~> 1.6.1'
+gem 'omniauth-github', '~> 1.3.0'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
+
+gem 'rack-cors', require: 'rack/cors'
 
 ## Asset bits
 gem 'font-awesome-rails', '~> 4.7.0'
