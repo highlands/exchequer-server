@@ -1,11 +1,11 @@
-class PaymentsController < ApplicationController
+class PaymentMethodsController < ApplicationController
   before_action :authenticate_user!
 
-  def add
+  def new
     @vault = Vault.env
   end
 
-  def added
+  def create
     @error = params[:error]
     token = params[:token]
     unless @error
