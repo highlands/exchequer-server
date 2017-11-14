@@ -22,3 +22,17 @@ following commands:
 * $ bundle exec rubocop
 * $ bundle exec rspec
 * $ bundle exec spinach
+
+### Documentation
+
+We are using
+[rspec_api_documentation](https://github.com/zipmark/rspec_api_documentation) to
+test our API. To generate the docs, you can:
+
+```sh
+rake docs:generate
+```
+And it will be saved in: `doc/api/index.{html,json}`.
+
+We are using [apitome](https://github.com/jejacks0n/apitome) to visualize our
+docs.

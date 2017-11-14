@@ -46,6 +46,9 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'font-awesome-rails', '~> 4.7.0'
 gem 'purecss-sass', '~> 0.6.2'
 
+## Documentation
+gem 'apitome', '~>0.1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
