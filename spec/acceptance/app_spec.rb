@@ -8,7 +8,7 @@ resource 'App' do
 
   context 'Unauthenticated' do
     get '/api/v1/app/me' do
-      example 'Showing Current App' do
+      example 'Showing Current App when not authenticated' do
         do_request
         expect(status).to eq 401
       end
@@ -23,7 +23,7 @@ resource 'App' do
     let(:authentication) { ApiKey.first.auth_token }
 
     get '/api/v1/app/me' do
-      example 'Showing Current App' do
+      example 'Showing Current App when authenticated' do
         do_request
         response = JSON.parse(response_body)
         expect(response.keys).to eq %w[name]
