@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OffersController, type: :controller do
+RSpec.describe CheckoutsController, type: :controller do
   context 'Authenticated' do
     let!(:user) { FactoryGirl.create(:user) }
 
@@ -9,24 +9,24 @@ RSpec.describe OffersController, type: :controller do
       allow(controller).to receive(:current_user).and_return(user)
     end
 
-    describe 'GET buy' do
+    describe 'POST create' do
       context 'WHEN user has NOT payments methods' do
         it 'adds a payment method' do
-          get :buy
+          get :new
           expect(response).to have_http_status(302)
-          expect(response).to redirect_to(add_payment_path)
+          expect(response).to redirect_to(new_payment_method_path)
         end
       end
 
       context 'WHEN user HAS payments methods' do
         before do
-          allow(user).to receive(:payment_methods?).and_return(true)
+          allow(user).to receive(:payment_method_present?).and_return(true)
         end
 
         it 'adds a payment method' do
-          get :buy
+          get :new
           expect(response).to have_http_status(200)
-          expect(response).not_to redirect_to(add_payment_path)
+          expect(response).not_to redirect_to(new_payment_method_path)
         end
       end
     end

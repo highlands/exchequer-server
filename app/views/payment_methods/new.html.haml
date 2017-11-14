@@ -6,7 +6,7 @@
 
 %form{:action => @vault.transparent_redirect_form_action, :method => "POST"}
   %fieldset
-    %input{:name => "redirect_url", :type => "hidden", :value => "http://localhost:3000/payments/added"}/
+    %input{:name => "redirect_url", :type => "hidden", :value => "http://localhost:3000/payment_methods/added"}/
     %input{:name => "environment_key", :type => "hidden", :value => @vault.key}/
     %label{:for => "credit_card_full_name"} Name
     %input#credit_card_full_name{:name => "credit_card[full_name]", :type => "text"}/

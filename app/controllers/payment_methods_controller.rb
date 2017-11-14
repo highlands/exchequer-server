@@ -5,7 +5,7 @@ class PaymentMethodsController < ApplicationController
     @vault = Vault.env
   end
 
-  def create
+  def added
     @error = params[:error]
     token = params[:token]
     unless @error

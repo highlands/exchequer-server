@@ -4,7 +4,7 @@ class RedirectionManager
 
     def path_for(params_in_session)
       controller = params_in_session['controller']
-      buy_offer_path(offer_id: params_in_session['offer_id']) if controller == 'offers'
+      new_checkout_path(offer_id: params_in_session['offer_id']) if controller == 'checkouts'
     end
   end
 end

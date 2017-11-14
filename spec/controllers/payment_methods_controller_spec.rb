@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PaymentsController, type: :controller do
+RSpec.describe PaymentMethodsController, type: :controller do
   context 'Authenticated' do
     let!(:user) { FactoryGirl.create(:user) }
 
@@ -9,14 +9,14 @@ RSpec.describe PaymentsController, type: :controller do
       allow(controller).to receive(:current_user).and_return(user)
     end
 
-    describe 'GET add_payment_method' do
-      it 'adds a payment method' do
-        get :add
+    describe 'GET new' do
+      it 'renders the page to add a new payment method' do
+        get :new
         expect(response).to have_http_status(:success)
       end
     end
 
-    describe 'GET payment_method_added' do
+    describe 'GET added - callback from spreedly' do
       context 'when there are no errors in the card addition' do
         before do
           allow(RedirectionManager).to receive(:path_for).and_return('/')
@@ -38,7 +38,7 @@ RSpec.describe PaymentsController, type: :controller do
         it 'renders added page' do
           get :added
           expect(response).to have_http_status(200)
-          expect(response).to render_template('payments/added')
+          expect(response).to render_template('payment_methods/added')
         end
       end
     end
