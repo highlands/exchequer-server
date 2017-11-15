@@ -1,6 +1,6 @@
 require 'acceptance_helper'
 
-resource 'App' do
+resource 'Manager' do
   let(:authentication) { nil }
 
   header 'Content-Type', 'application/json'
@@ -26,7 +26,7 @@ resource 'App' do
       example 'Showing Current App when authenticated' do
         do_request
         response = JSON.parse(response_body)
-        expect(response.keys).to eq %w[name]
+        expect(response.keys).to eq %w[id name created_at updated_at]
         expect(status).to eq(200)
       end
     end
