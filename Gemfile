@@ -11,6 +11,8 @@ gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 # Active Admin
 gem 'activeadmin', '~> 1.1.0'
+# Active Model Serializers used for the API layer
+gem 'active_model_serializers', '~> 0.10.6'
 # Cancan for authorization
 gem 'cancan', '~> 1.6.10'
 # Devise
@@ -34,15 +36,18 @@ gem 'omniauth', '~> 1.6.1'
 gem 'omniauth-github', '~> 1.3.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.7.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
 gem 'rack-cors', require: 'rack/cors'
 
 ## Asset bits
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7.0'
 gem 'purecss-sass', '~> 0.6.2'
+
+## Documentation
+gem 'apitome', '~>0.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -58,6 +63,7 @@ group :development, :test do
   gem 'poltergeist', '~> 1.16.0'
   gem 'rails-controller-testing', '~> 1.0.2'
   gem 'rspec-rails', '~> 3.7.1'
+  gem 'rspec_api_documentation', '~> 5.1.0'
   gem 'rubocop', '~> 0.51.0'
   gem 'selenium-webdriver', '~> 3.6.0'
   gem 'shoulda-matchers', '~> 3.1.2'

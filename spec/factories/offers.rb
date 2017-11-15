@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :offer do
-    app
+    manager
     description Faker::Lorem.sentence
     name Faker::Lorem.word
     due_on '2017-10-28 20:17:48'

@@ -10,8 +10,8 @@ class Offer < ApplicationRecord
   # The deferrable boolean allows multiple payments to be made against an offer
   # when true, or when false the full amount is due in a single transaction.
 
-  belongs_to :app
-  validates :app, presence: true
+  belongs_to :manager
+  validates :manager, presence: true
   validates :name, presence: true
   validates :description, presence: true
   has_many :coupons, dependent: :destroy

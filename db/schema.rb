@@ -31,17 +31,11 @@ ActiveRecord::Schema.define(version: 20171102194159) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string "auth_token"
-    t.bigint "app_id"
+    t.bigint "manager_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["app_id"], name: "index_api_keys_on_app_id"
     t.index ["auth_token"], name: "index_api_keys_on_auth_token", unique: true
-  end
-
-  create_table "apps", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["manager_id"], name: "index_api_keys_on_manager_id"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -77,6 +71,12 @@ ActiveRecord::Schema.define(version: 20171102194159) do
     t.index ["offer_id"], name: "index_line_items_on_offer_id"
   end
 
+  create_table "managers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "oauth_authorizations", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20171102194159) do
   end
 
   create_table "offers", force: :cascade do |t|
-    t.bigint "app_id"
+    t.bigint "manager_id"
     t.string "description"
     t.string "name"
     t.datetime "due_on"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20171102194159) do
     t.boolean "deferrable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["app_id"], name: "index_offers_on_app_id"
+    t.index ["manager_id"], name: "index_offers_on_manager_id"
   end
 
   create_table "payment_methods", force: :cascade do |t|
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 20171102194159) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "api_keys", "apps"
+  add_foreign_key "api_keys", "managers"
   add_foreign_key "coupons", "offers"
   add_foreign_key "invoices", "offers"
   add_foreign_key "invoices", "users"
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20171102194159) do
   add_foreign_key "line_items", "invoices"
   add_foreign_key "line_items", "offers"
   add_foreign_key "oauth_authorizations", "users"
-  add_foreign_key "offers", "apps"
+  add_foreign_key "offers", "managers"
   add_foreign_key "payment_methods", "users"
   add_foreign_key "payments", "invoices"
 end
