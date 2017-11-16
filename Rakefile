@@ -6,9 +6,9 @@ require_relative 'config/application'
 Rails.application.load_tasks
 
 # Clearing here because I want them to run in this order, specifically.
-task(:default).clear
+task(:check).clear
 
-task :default do
+task :check do
   %i[rubocop stylelint spec spinach].each do |task|
     begin
       Rake::Task[task].invoke
