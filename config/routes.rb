@@ -22,4 +22,6 @@ Rails.application.routes.draw do
       # resources :payment_method, only: [:show, :index]
     end
   end
+
+  mount HighlandsAuth::Engine => "/users", :as => "auth"
 end
