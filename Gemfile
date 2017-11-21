@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'highlands_auth', git: 'git@github.com:highlands/highlands_auth.git', branch: 'master'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -17,8 +19,6 @@ gem 'activeadmin-searchable_select', '~>1.0.0'
 gem 'active_model_serializers', '~> 0.10.6'
 # Cancan for authorization
 gem 'cancan', '~> 1.6.10'
-# Devise
-gem 'devise', '~> 4.3.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -32,10 +32,6 @@ gem 'haml-rails', '~> 1.0'
 
 # Spreedly
 gem 'spreedly', '~> 2.0.17'
-
-# OAuth
-gem 'omniauth', '~> 1.6.1'
-gem 'omniauth-github', '~> 1.3.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7.0'
