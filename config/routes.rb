@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount HighlandsAuth::Engine => "/highlands_sso", :as => "auth"
+
   # PaymentMethod
   resources :payment_methods, only: [:new]
   get 'payment_methods/added', as: :payment_added
@@ -7,7 +9,8 @@ Rails.application.routes.draw do
   resources :checkouts
 
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { :omniauth_callbacks => 'callbacks' }
+  # If we want to use devise with omni_auth
+  # devise_for :users, controllers: { :omniauth_callbacks => 'callbacks' }
   root to: "visitor#index"
   namespace :api do
     namespace :v1 do
@@ -23,5 +26,4 @@ Rails.application.routes.draw do
     end
   end
 
-  mount HighlandsAuth::Engine => "/users", :as => "auth"
 end

@@ -11,6 +11,12 @@ class User < ApplicationRecord
     payment_methods.any?
   end
 
+  def logout!
+    self.token = nil
+    self.secret = nil
+    self.save
+  end
+
   private
 
   def default_values
