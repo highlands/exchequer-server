@@ -7,7 +7,7 @@ HighlandsAuth::SessionsController.class_eval do
     if user
       # Does something
     else
-      User.create(email: email, password: password)
+      User.create(email: email)
     end
   end
 end
