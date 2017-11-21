@@ -13,6 +13,23 @@ in [Ruby on Rails](http://rubyonrails.org/) and backed by
 * $ bundle exec rake db:setup
 * $ bundle exec rake db:test:prepare
 
+
+#### Environment Variables
+
+We have Spreedly and Highlands SSO set up. You need to have the following ENV
+vars.
+
+```sh
+export SECRET_KEY_BASE=""
+export SPREEDLY_KEY=""
+export SPREEDLY_SECRET=""
+export SSO_KEY=""
+export SSO_SECRET=""
+export HIGHLANDS_AUTH_REDIRECT="http://localhost:3000"
+export HIGHLANDS_AUTH_SUPPORT_EMAIL=""
+```
+
+
 ### Tests
 
 We use Rubocop for linting, rspec for unit tests, and spinach for integration
