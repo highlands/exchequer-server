@@ -4,11 +4,10 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :email
       f.input :admin
-      f.input :password
     end
     f.actions
   end
   permit_params do
-    %i[email admin password]
+    %i[email admin]
   end
 end

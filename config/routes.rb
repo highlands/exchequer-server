@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   resources :checkouts
 
   ActiveAdmin.routes(self)
-  # If we want to use devise with omni_auth
-  # devise_for :users, controllers: { :omniauth_callbacks => 'callbacks' }
   root to: "visitor#index"
   namespace :api do
     namespace :v1 do
