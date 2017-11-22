@@ -1,25 +1,36 @@
+- content_for :meta do
+  %meta{name: "spreedly_token", content: Rails.application.secrets.spreedly_environment}
+
+- content_for :javascripts do
+  %script{src: "https://core.spreedly.com/iframe/iframe-v1.min.js"}
+= javascript_include_tag 'add_payment_method'
+
 %h1 Add PaymentMethod Form
 
 %div
   %a{:href => "https://docs.spreedly.com/reference/test-data/"}
     Test Data Cards
+%body
+  %form#payment-form{:method=> :post, :action => "/payment_methods", :onsubmit => "submitPaymentForm(); return false;"}
+    %input#payment_method_token{:name => "payment_method_token", :type => "hidden"}/
+    %label{:for => "full_name"} Name
+    %input#full_name{:name => "full_name", :type => "text"}/
+    %br/
+    %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}/
+    %label Credit Card Number
+    #spreedly-number{:style => "width:225px; height:35px; border: 2px solid"}
+    %br/
+    %label{:for => "spreedly-exp-month"} Expiration Date
+    %input#month{:maxlength => "2", :name => "month", :type => "text"}/
+    %input#year{:maxlength => "4", :name => "year", :type => "text"}/
+    %br/
+    %label CVV
+    #spreedly-cvv{:style => "width:60px; height:35px; border: 2px solid "}
+    %br/
+    %input#submit-button{:disabled => "disabled", :type => "submit", :value => "Add card"}/
 
-%form{:action => @vault.transparent_redirect_form_action, :method => "POST"}
-  %fieldset
-    %input{:name => "redirect_url", :type => "hidden", :value => "#{host}/payment_methods/added"}/
-    %input{:name => "environment_key", :type => "hidden", :value => @vault.key}/
-    %label{:for => "credit_card_full_name"} Name
-    %input#credit_card_full_name{:name => "credit_card[full_name]", :type => "text"}/
-    %label{:for => "credit_card_number"} Card Number
-    %input#credit_card_number{:name => "credit_card[number]", :type => "text"}/
-    %div
-      %label{:for => "credit_card_verification_value"} Security Code
-      %input#credit_card_verification_value{:name => "credit_card[verification_value]", :type => "text"}/
-    %div
-      %label{:for => "credit_card_month"} Expires on
-      Month:
-      %input#credit_card_month{:name => "credit_card[month]", :type => "text"}/
-      Year:
-      %input#credit_card_year{:name => "credit_card[year]", :type => "text"}/
-    %div
-      %button{:type => "submit"} Submit Payment
+
+:javascript
+  $('#payment-form').submit(function(e) {
+    e.preventDefault();
+  });
