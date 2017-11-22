@@ -1,5 +1,5 @@
 - content_for :meta do
-  %meta{name: "spreedly_token", content: ENV['SPREEDLY_ENVIRONMENT']}
+  %meta{name: "spreedly_token", content: Rails.application.secrets.spreedly_environment}
 
 - content_for :javascripts do
   %script{src: "https://core.spreedly.com/iframe/iframe-v1.min.js"}
@@ -27,7 +27,7 @@
     %label CVV
     #spreedly-cvv{:style => "width:60px; height:35px; border: 2px solid "}
     %br/
-    %input#submit-button{:disabled => "disabled", :type => "submit", :value => "Pay Now"}/
+    %input#submit-button{:disabled => "disabled", :type => "submit", :value => "Add card"}/
 
 
 :javascript
