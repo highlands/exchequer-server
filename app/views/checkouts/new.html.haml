@@ -6,6 +6,15 @@
   %div
     %h5 Description
     = @offer.description
+  %div
+    %h5 Amount
+    = @offer.amount
+    = form_tag checkouts_path do
+      = hidden_field_tag :offer_id, @offer.id
+      = hidden_field_tag :amount, @offer.amount
+      %button{type: "submit"}
+        Buy it
+
 - else
   %h2 There are no offers.
 
