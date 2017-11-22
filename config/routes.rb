@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   mount HighlandsAuth::Engine => "/highlands_sso", :as => "auth"
 
   # PaymentMethod
-  resources :payment_methods, only: [:new]
-  get 'payment_methods/added', as: :payment_added
+  resources :payment_methods, only: [:new, :create]
 
   # Checkouts
   resources :checkouts
