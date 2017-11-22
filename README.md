@@ -21,6 +21,7 @@ vars.
 
 ```sh
 export SECRET_KEY_BASE=""
+export SPREEDLY_ENVIRONMENT=""
 export SPREEDLY_KEY=""
 export SPREEDLY_SECRET=""
 export SSO_KEY=""
