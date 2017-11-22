@@ -34,7 +34,7 @@ class CheckoutsController < ApplicationController
 
         # TODO: Handle LineItem
 
-        Payment.create(invoice: invoice, amount: amount)
+        Payment.create(invoice: invoice, amount: amount, transaction_token: transaction.token)
         flash[:success] = "You've just paid for this offer"
       end
     else

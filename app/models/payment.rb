@@ -4,4 +4,5 @@ class Payment < ApplicationRecord
   belongs_to :invoice
   validates :invoice, presence: true
   validates :amount, presence: true
+  validates :transaction_token, presence: true
 end
