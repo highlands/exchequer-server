@@ -1,3 +1,6 @@
+- content_for :meta do
+  %meta{name: "spreedly_token", content: ENV['SPREEDLY_ENVIRONMENT']}
+
 %h1 Add PaymentMethod Form
 
 %div
@@ -25,7 +28,19 @@
     %input#submit-button{:disabled => "disabled", :type => "submit", :value => "Pay Now"}/
 
 :javascript
-  Spreedly.init("CHxPXt31KbBKZk5hUe3DIMllNEb", {
+  function getMetaContent(attributeName, attributeValue) {
+    var metas = document.getElementsByTagName("meta");
+
+    for (var i=0; i<metas.length; i++) {
+      if (metas[i].getAttribute(attributeName) == attributeValue) {
+        return metas[i].getAttribute("content");
+      }
+    }
+  }
+
+  var spreedlyToken = getMetaContent("name", "spreedly_token");
+
+  Spreedly.init(spreedlyToken, {
     "numberEl": "spreedly-number",
     "cvvEl": "spreedly-cvv"
   });
