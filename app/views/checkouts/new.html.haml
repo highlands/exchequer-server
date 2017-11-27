@@ -9,29 +9,17 @@
       = @offer.description
     %div
       %h5 Amount
-      = @invoice.remaining_balance
-      = form_tag checkouts_path do
-        = hidden_field_tag :offer_id, @offer.id
-        = hidden_field_tag :amount, @invoice.remaining_balance
-        %button{type: "submit"}
-          Buy it
-    %div
-      %h4 Invoice
-      %table{class: "pure-table"}
-        %thead
-          %tr
-            %th
-              DateTime
-            %th
-              Amount
-        %tbody
-          - @invoice.line_items.each do |li|
-            %tr
-              %td
-                = li.created_at
-              %td
-                = li.amount
-
+      = @offer.amount
+      = form_tag(checkouts_path, class: "pure-form") do
+        %fieldset
+          %div{class: "pure-u-1-4"}
+            = number_field_tag :amount, @invoice.remaining_balance, {min: 0.0, max: @invoice.remaining_balance, class: "pure-input-1-4"}
+            = hidden_field_tag :offer_id, @offer.id
+            = hidden_field_tag :remaining_balance, @invoice.remaining_balance
+            %button{class: "pure-button", type: "submit"}
+              Buy it
+    - if @invoice.line_items.count.positive?
+      = render 'checkouts/invoice'
   - else
     %h2 There are no offers.
 
