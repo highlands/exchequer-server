@@ -25,7 +25,8 @@ class Invoice < ApplicationRecord
     # final total including discounts
     # subtotal - line_items.map(&:total).sum
     # TODO: include discounts
-    line_items.map(&:amount).sum
+    # line_items.map(&:amount).sum
+    offer.amount
   end
 
   def remaining_balance

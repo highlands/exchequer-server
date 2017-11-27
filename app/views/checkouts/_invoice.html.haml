@@ -1,0 +1,18 @@
+%div
+  %h4 Invoice
+  %table{class: "pure-table"}
+    %thead
+      %tr
+        %th
+          DateTime
+        %th
+          Amount
+    %tbody
+      %h4
+      - @invoice.line_items.each do |li|
+        %tr
+          %td
+            = li.created_at
+          %td
+            = li.amount
+  = "You already paid $ #{@invoice.paid_balance}"
