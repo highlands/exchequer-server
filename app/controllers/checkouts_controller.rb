@@ -8,6 +8,7 @@ class CheckoutsController < ApplicationController
     # params
     redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
     @offer = Offer.find_by(id: params[:offer_id])
+    @invoice = Invoice.find_by(offer: @offer, user: current_user)
   end
 
   def create
@@ -32,7 +33,7 @@ class CheckoutsController < ApplicationController
                                             user: current_user,
                                             due_on: offer.due_on || Time.zone.now)
 
-        # TODO: Handle LineItem
+        LineItem.create(invoice: invoice, offer: offer, quantity: 1, amount: amount)
 
         Payment.create(invoice: invoice, amount: amount, transaction_token: transaction.token)
         flash[:success] = "You've just paid for this offer"

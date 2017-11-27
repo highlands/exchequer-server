@@ -12,7 +12,7 @@ class Invoice < ApplicationRecord
 
   def paid_balance
     # Total of all payments towards invoice
-    BigDecimal.new('0')
+    line_items.map(&:amount).sum
   end
 
   def subtotal
@@ -24,7 +24,8 @@ class Invoice < ApplicationRecord
   def total
     # final total including discounts
     # subtotal - line_items.map(&:total).sum
-    BigDecimal.new('0')
+    # TODO: include discounts
+    line_items.map(&:amount).sum
   end
 
   def remaining_balance
