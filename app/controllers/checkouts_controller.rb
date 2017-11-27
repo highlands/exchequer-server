@@ -22,7 +22,7 @@ class CheckoutsController < ApplicationController
     # because this is not the default from spreedly
     transaction = spreedly_env.purchase_on_gateway(Rails.application.secrets.gateway_token,
       payment_token,
-      200,
+      amount,
       retain_on_success: true)
     if transaction.succeeded?
       ActiveRecord::Base.transaction do
