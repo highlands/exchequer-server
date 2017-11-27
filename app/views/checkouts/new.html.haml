@@ -1,20 +1,37 @@
-- if @offer
-  %h1 Buy an Offer
-  %div
-    %h5 Name
-    = @offer.name
-  %div
-    %h5 Description
-    = @offer.description
-  %div
-    %h5 Amount
-    = @offer.amount
-    = form_tag checkouts_path do
-      = hidden_field_tag :offer_id, @offer.id
-      = hidden_field_tag :amount, @offer.amount
-      %button{type: "submit"}
-        Buy it
+%div{class: "pure-g pure-u-1"}
+  - if @offer
+    %h1 Buy an Offer
+    %div
+      %h5 Name
+      = @offer.name
+    %div
+      %h5 Description
+      = @offer.description
+    %div
+      %h5 Amount
+      = @invoice.remaining_balance
+      = form_tag checkouts_path do
+        = hidden_field_tag :offer_id, @offer.id
+        = hidden_field_tag :amount, @invoice.remaining_balance
+        %button{type: "submit"}
+          Buy it
+    %div
+      %h4 Invoice
+      %table{class: "pure-table"}
+        %thead
+          %tr
+            %th
+              DateTime
+            %th
+              Amount
+        %tbody
+          - @invoice.line_items.each do |li|
+            %tr
+              %td
+                = li.created_at
+              %td
+                = li.amount
 
-- else
-  %h2 There are no offers.
+  - else
+    %h2 There are no offers.
 
