@@ -13,6 +13,7 @@
       = form_tag(checkouts_path, class: "pure-form") do
         %fieldset
           %div{class: "pure-u-1-4"}
+            = text_field_tag :coupon,nil, {class: "pure-input-1-4"}
             = number_field_tag :amount, @invoice.remaining_balance, {min: 0.0, max: @invoice.remaining_balance, class: "pure-input-1-4"}
             = hidden_field_tag :offer_id, @offer.id
             = hidden_field_tag :remaining_balance, @invoice.remaining_balance
