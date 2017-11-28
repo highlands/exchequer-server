@@ -10,6 +10,13 @@ class LineItem < ApplicationRecord
   validate :ensure_non_dual_type
   validate :ensure_single_type
 
+  def self.create_if_necessary_for(invoice, offer, _coupon)
+    LineItem.create(invoice: invoice,
+                    offer: offer,
+                    quantity: 1,
+                    amount: offer.amount)
+  end
+
   private
 
   def ensure_non_dual_type

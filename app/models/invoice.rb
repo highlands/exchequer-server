@@ -10,24 +10,36 @@ class Invoice < ApplicationRecord
   validates :user, presence: true
   validates :due_on, presence: true
 
-  def paid_balance
+  def self.find_or_create_for(offer, user)
+    # It creates an invoice if there is not
+    # and after this it passes the invoice id
+    # to the payment
+    Invoice.find_or_create_by(offer: offer,
+                              user: user,
+                              due_on: offer.due_on || Time.zone.now)
+  end
+
+  def balance_paid
     # Total of all payments towards invoice
     payments.map(&:amount).sum
   end
 
   def subtotal
     # Total not including coupons
-    # line_items.map(&:amount).sum
-    offer.amount
+    line_items.where.not(offer_id: nil).map(&:amount).sum
   end
 
   def total
     # final total including discounts
-    # subtotal - line_items.map(&:total).sum
-    subtotal - line_items.map(&:amount).sum
+    subtotal - discounts
   end
 
-  def remaining_balance
+  def discounts
+    # TODO: Worry with percent_off discounts
+    line_items.where.not(coupon_id: nil).map(&:amount).sum
+  end
+
+  def balance_remaining
     total - paid_balance
   end
 end
