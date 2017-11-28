@@ -15,4 +15,17 @@ class Offer < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   has_many :coupons, dependent: :destroy
+
+  def total_with_discounts
+    total_value = amount
+    coupons.each do |c|
+      if c.percent_off
+        total_value *= c.percent_off
+      elsif c.amount_off
+        total_value -= c.amount_off
+      end
+    end
+
+    total_value
+  end
 end

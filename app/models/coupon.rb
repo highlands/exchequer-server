@@ -3,6 +3,7 @@ class Coupon < ApplicationRecord
   # either via a percentage (`percent_off`) or via a flat amount (`amount_off`)
   belongs_to :offer
   validates :name, presence: true
+  validates :code, presence: true
   validates :offer, presence: true
   validate :ensure_discount
   validate :ensure_single_discount
