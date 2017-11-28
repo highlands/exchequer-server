@@ -17,13 +17,14 @@ class Invoice < ApplicationRecord
 
   def subtotal
     # Total not including coupons
-    line_items.map(&:amount).sum
+    # line_items.map(&:amount).sum
+    offer.amount
   end
 
   def total
     # final total including discounts
     # subtotal - line_items.map(&:total).sum
-    subtotal - offer.total_with_discounts
+    subtotal - line_items.map(&:amount).sum
   end
 
   def remaining_balance

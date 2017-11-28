@@ -19,8 +19,11 @@ RSpec.describe CheckoutsController, type: :controller do
       end
 
       context 'WHEN user HAS payments methods' do
+        let(:offer) { double('Offer', amount: 1, to_i: 1) }
+
         before do
           allow(user).to receive(:payment_method_present?).and_return(true)
+          allow(Offer).to receive(:find_by).and_return(offer)
         end
 
         it 'adds a payment method' do

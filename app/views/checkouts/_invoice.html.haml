@@ -9,10 +9,10 @@
           Amount
     %tbody
       %h4
-      - @invoice.line_items.each do |li|
+      - @invoice.payments.each do |payment|
         %tr
           %td
-            = li.created_at
+            = payment.created_at
           %td
-            = li.amount
+            = payment.amount
   = "You already paid $ #{@invoice.paid_balance}"

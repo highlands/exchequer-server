@@ -9,6 +9,8 @@ class CheckoutsController < ApplicationController
     redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
     @offer = Offer.find_by(id: params[:offer_id])
     @invoice = Invoice.find_by(offer: @offer, user: current_user)
+
+    @remaining_balance = @invoice.try(:remaining_balance) || @offer.amount
   end
 
   def create
