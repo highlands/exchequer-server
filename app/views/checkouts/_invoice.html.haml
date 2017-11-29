@@ -1,12 +1,12 @@
 %div
   %h4 Invoice
-  %table{class: "pure-table"}
+  %table{class: "pure-table pure-table-horizontal"}
     %thead
       %tr
         %th
-          Transaction Type
-        %th
           DateTime
+        %th
+          Transaction Type
         %th
           Amount
     %tbody
@@ -15,17 +15,42 @@
       - @invoice.line_items.each do |li|
         %tr
           %td
-            = "LineItem - #{line_item_type(li)}"
-          %td
             = li.created_at
           %td
+            = "#{@invoice.offer.name} - #{line_item_type(li)}"
+          %td
             = li.amount
+      %tr{class: "pure-table-odd"}
+        %td
+        %td
+          %b Subtotal
+        %td
+          %b
+            = @invoice.subtotal
+      %tr{class: "pure-table-odd"}
+        %td
+        %td
+          %b Payments
+        %td
       - @invoice.payments.each do |payment|
         %tr
           %td
-            Payment
-          %td
             = payment.created_at
           %td
+            Payment
+          %td
             = payment.amount
-  = "You already paid $ #{@invoice.balance_paid}"
+      %tr
+        %td
+        %td
+          %b Total Payments
+        %td
+          %b
+            = @invoice.balance_paid
+      %tr
+        %td
+        %td
+          %b Amount Remaining
+        %td
+          %b
+            = @invoice.balance_remaining
