@@ -10,7 +10,7 @@ class CheckoutsController < ApplicationController
     @offer = Offer.find_by(id: params[:offer_id])
     @invoice = Invoice.find_by(offer: @offer, user: current_user)
 
-    @remaining_balance = @invoice.try(:remaining_balance) || @offer.amount
+    @balance_remaining = @invoice.try(:balance_remaining) || @offer.amount
   end
 
   def create

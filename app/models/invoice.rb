@@ -40,6 +40,6 @@ class Invoice < ApplicationRecord
   end
 
   def balance_remaining
-    total - paid_balance
+    total - balance_paid
   end
 end

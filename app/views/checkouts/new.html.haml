@@ -14,9 +14,8 @@
         %fieldset
           %div{class: "pure-u-1-4"}
             = text_field_tag :coupon,nil, {class: "pure-input-1-4"}
-            = number_field_tag :amount, @remaining_balance, {min: 0.0, max: @remaining_balance, class: "pure-input-1-4"}
+            = number_field_tag :amount, @balance_remaining, {min: 0.0, max: @balance_remaining, class: "pure-input-1-4"}
             = hidden_field_tag :offer_id, @offer.id
-            = hidden_field_tag :remaining_balance, @remaining_balance
             %button{class: "pure-button", type: "submit"}
               Buy it
     - if @invoice && @invoice.payments.count.positive?
