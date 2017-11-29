@@ -19,6 +19,10 @@ class Invoice < ApplicationRecord
                               due_on: offer.due_on || Time.zone.now)
   end
 
+  def zero_transactions?
+    payments.count.zero? && line_items.where.not(coupon_id: nil).count.zero?
+  end
+
   def balance_paid
     # Total of all payments towards invoice
     payments.map(&:amount).sum
@@ -26,7 +30,11 @@ class Invoice < ApplicationRecord
 
   def subtotal
     # Total not including coupons
-    line_items.where.not(offer_id: nil).map(&:amount).sum
+    if line_items.count.positive?
+      line_items.where.not(offer_id: nil).map(&:amount).sum
+    else
+      offer.amount
+    end
   end
 
   def total

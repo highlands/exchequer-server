@@ -4,13 +4,26 @@
     %thead
       %tr
         %th
+          Transaction Type
+        %th
           DateTime
         %th
           Amount
     %tbody
+      - # FIXME: Improve this invoice visualization
       %h4
+      - @invoice.line_items.each do |li|
+        %tr
+          %td
+            = "LineItem - #{line_item_type(li)}"
+          %td
+            = li.created_at
+          %td
+            = li.amount
       - @invoice.payments.each do |payment|
         %tr
+          %td
+            Payment
           %td
             = payment.created_at
           %td

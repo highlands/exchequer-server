@@ -8,9 +8,9 @@ class CheckoutsController < ApplicationController
     # params
     redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
     @offer = Offer.find_by(id: params[:offer_id])
-    @invoice = Invoice.find_by(offer: @offer, user: current_user)
+    @invoice = Invoice.find_or_create_for(@offer, current_user)
 
-    @balance_remaining = @invoice.try(:balance_remaining) || @offer.amount
+    @balance_remaining = @invoice.balance_remaining
   end
 
   def create
@@ -18,7 +18,11 @@ class CheckoutsController < ApplicationController
       find_offer_and_coupon
       invoice = Invoice.find_or_create_for(@offer, current_user)
 
-      LineItem.create_if_necessary_for(invoice, @offer, @coupon)
+      begin
+        LineItem.create_if_necessary_for(invoice, @offer, @coupon)
+      rescue ArgumentError => e
+        flash[:error] = e.message
+      end
 
       if !@coupon
         begin
