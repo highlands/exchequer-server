@@ -1,4 +1,6 @@
 class LineItem < ApplicationRecord
+  CouponNotInFullPrice = Class.new(StandardError)
+
   # A LineItem is an item with amount associated with an invoice.
   # It can optionally be a coupon
   belongs_to :invoice
@@ -9,6 +11,10 @@ class LineItem < ApplicationRecord
   validates :amount, presence: true
   validate :ensure_non_dual_type
   validate :ensure_single_type
+
+  def type
+    coupon_id ? Coupon : Offer
+  end
 
   def self.create_if_necessary_for(invoice, offer, coupon)
     # We create a LineItem only for the offer and coupon
@@ -23,7 +29,7 @@ class LineItem < ApplicationRecord
     if coupon
       begin
         LineItem.create_line_item_for_coupon(invoice, offer, coupon)
-      rescue ArgumentError => e
+      rescue CouponNotInFullPrice => e
         raise e
       end
     end
@@ -38,7 +44,7 @@ class LineItem < ApplicationRecord
                                  quantity: 1,
                                  amount: offer.amount)
     else
-      raise ArgumentError, 'You can only apply the coupon in the full price'
+      raise CouponNotInFullPrice, 'You can only apply the coupon in the full price'
     end
   end
 

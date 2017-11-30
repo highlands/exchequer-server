@@ -17,7 +17,7 @@
           %td
             = li.created_at
           %td
-            = "#{@invoice.offer.name} - #{line_item_type(li)}"
+            = "#{@invoice.offer.name} - #{li.type}"
           %td
             = li.amount
       %tr{class: "pure-table-odd"}
