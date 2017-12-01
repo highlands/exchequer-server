@@ -29,7 +29,7 @@ class CheckoutsController < ApplicationController
   private
 
   def checkout_with_coupon
-    Checkout.with_coupon(@invoice, @offer, @coupon)
+    Checkout.with_coupon(@invoice, @coupon)
     flash[:success] = "You've just used your coupon"
   end
 

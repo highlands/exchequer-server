@@ -25,14 +25,14 @@ class LineItem < ApplicationRecord
     end
   end
 
-  def self.create_or_find_for_coupon(invoice, offer, coupon)
+  def self.create_or_find_for_coupon(invoice, coupon)
     if invoice.zero_transactions?
       # FIXME: Need to check the amount here.
       # Will we save the amount off?
       LineItem.find_or_create_by(invoice: invoice,
                                  coupon: coupon,
                                  quantity: 1,
-                                 amount: offer.amount)
+                                 amount: coupon.discounted_price)
     else
       raise CouponNotInFullPrice, 'You can only apply the coupon in the full price'
     end

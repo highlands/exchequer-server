@@ -8,6 +8,13 @@ class Coupon < ApplicationRecord
   validate :ensure_discount
   validate :ensure_single_discount
 
+  def discounted_price
+    offer_price = offer.amount
+
+    return amount_off if amount_off
+    return offer_price * percent_off
+  end
+
   private
 
   def ensure_discount

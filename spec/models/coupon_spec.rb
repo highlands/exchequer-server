@@ -28,4 +28,22 @@ RSpec.describe Coupon, type: :model do
       end
     end
   end
+
+  describe '#discounted_price' do
+    let(:offer) { FactoryGirl.create(:offer, amount: 100) }
+
+    context 'when offer has amount off' do
+      let(:coupon) { FactoryGirl.create(:coupon, amount_off: 20, percent_off: nil) }
+      it 'returns the amount off as a discount price' do
+        expect(coupon.discounted_price).to eq 20
+      end
+    end
+
+    context 'when offer has percent off' do
+      let(:coupon) { FactoryGirl.create(:coupon, amount_off: nil, percent_off: 0.2) }
+      it 'returns the offer amount * percent off as a discount price' do
+        expect(coupon.discounted_price).to eq 20
+      end
+    end
+  end
 end
