@@ -13,12 +13,14 @@
       = form_tag(checkouts_path, class: "pure-form") do
         %fieldset
           %div{class: "pure-u-1-4"}
-            = number_field_tag :amount, @invoice.remaining_balance, {min: 0.0, max: @invoice.remaining_balance, class: "pure-input-1-4"}
+            %h5
+              Coupon
+            = text_field_tag :coupon,nil, {class: "pure-input-1-4"}
+            = number_field_tag :amount, @balance_remaining, {min: 0.0, max: @balance_remaining, class: "pure-input-1-4"}
             = hidden_field_tag :offer_id, @offer.id
-            = hidden_field_tag :remaining_balance, @invoice.remaining_balance
             %button{class: "pure-button", type: "submit"}
               Buy it
-    - if @invoice.line_items.count.positive?
+    - if @invoice && (@invoice.payments.count.positive? || @invoice.line_items.count.positive?)
       = render 'checkouts/invoice'
   - else
     %h2 There are no offers.
