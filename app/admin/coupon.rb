@@ -14,6 +14,6 @@ ActiveAdmin.register Coupon do
   end
 
   permit_params do
-    %i[offer_id name percent_off amount_off]
+    %i[offer_id name percent_off amount_off code]
   end
 end
