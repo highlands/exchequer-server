@@ -27,8 +27,6 @@ class LineItem < ApplicationRecord
 
   def self.create_or_find_for_coupon(invoice, coupon)
     if invoice.zero_transactions?
-      # FIXME: Need to check the amount here.
-      # Will we save the amount off?
       LineItem.find_or_create_by(invoice: invoice,
                                  coupon: coupon,
                                  quantity: 1,
