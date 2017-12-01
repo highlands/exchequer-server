@@ -42,7 +42,7 @@
           %td
             = li.created_at.to_date
           %td
-            = number_to_currency(li.amount)
+            = "- #{number_to_currency(li.amount)}"
       %tr
         %td
         %td
@@ -62,14 +62,14 @@
           %td
             = payment.created_at.to_date
           %td
-            = number_to_currency(payment.amount)
+            = "- #{number_to_currency(payment.amount)}"
       %tr
         %td
         %td
           %b Total Payments
         %td
           %b
-            = number_to_currency(@invoice.balance_paid)
+            = "- #{number_to_currency(@invoice.balance_paid)}"
       %tr
         %td
         %td
