@@ -16,7 +16,7 @@ class LineItem < ApplicationRecord
     coupon_id ? Coupon : Offer
   end
 
-  def self.create_or_find_for(invoice, offer)
+  def self.create_or_find_for_offer(invoice, offer)
     if offer
       LineItem.find_or_create_by(invoice: invoice,
                                  offer: offer,
@@ -25,7 +25,7 @@ class LineItem < ApplicationRecord
     end
   end
 
-  def self.create_line_item_for_coupon(invoice, offer, coupon)
+  def self.create_or_find_for_coupon(invoice, offer, coupon)
     if invoice.zero_transactions?
       # FIXME: Need to check the amount here.
       # Will we save the amount off?

@@ -18,7 +18,7 @@ class CheckoutsController < ApplicationController
       find_offer_and_coupon
       find_or_create_invoice
 
-      LineItem.create_or_find_for(@invoice, @offer)
+      LineItem.create_or_find_for_offer(@invoice, @offer)
 
       @coupon ? checkout_with_coupon : checkout_without_coupon
 
