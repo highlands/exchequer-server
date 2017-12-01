@@ -16,22 +16,12 @@ class LineItem < ApplicationRecord
     coupon_id ? Coupon : Offer
   end
 
-  def self.create_if_necessary_for(invoice, offer, coupon)
-    # We create a LineItem only for the offer and coupon
-    # Coupons are applied only for the full price
+  def self.create_or_find_for(invoice, offer)
     if offer
       LineItem.find_or_create_by(invoice: invoice,
                                  offer: offer,
                                  quantity: 1,
                                  amount: offer.amount)
-    end
-
-    if coupon
-      begin
-        LineItem.create_line_item_for_coupon(invoice, offer, coupon)
-      rescue CouponNotInFullPrice => e
-        raise e
-      end
     end
   end
 

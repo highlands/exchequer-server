@@ -16,11 +16,11 @@ class CheckoutsController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       find_offer_and_coupon
-      invoice = Invoice.find_or_create_for(@offer, current_user)
+      find_or_create_invoice
 
-      LineItem.create_if_necessary_for(invoice, @offer, @coupon)
+      LineItem.create_or_find_for(@invoice, @offer)
 
-      checkout_without_coupon(invoice) unless @coupon
+      @coupon ? checkout_with_coupon : checkout_without_coupon
 
       redirect_to new_checkout_path(offer_id: @offer)
     end
@@ -28,9 +28,18 @@ class CheckoutsController < ApplicationController
 
   private
 
-  def checkout_without_coupon(invoice)
-    SpreedlyTransaction.purchase(invoice, params[:amount], payment_token)
+  def checkout_with_coupon
+    Checkout.with_coupon(@invoice, @offer, @coupon)
+    flash[:success] = "You've just used your coupon"
+  end
+
+  def checkout_without_coupon
+    Checkout.without_coupon(@invoice, params[:amount], payment_token)
     flash[:success] = "You've just paid for this offer"
+  end
+
+  def find_or_create_invoice
+    @invoice = Invoice.find_or_create_for(@offer, current_user)
   end
 
   def find_offer_and_coupon
