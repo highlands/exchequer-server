@@ -9,19 +9,27 @@
       = @offer.description
     %div
       %h5 Amount
-      = @offer.amount
+      = number_to_currency(@offer.amount)
       = form_tag(checkouts_path, class: "pure-form") do
         %fieldset
           %div{class: "pure-u-1-4"}
             %h5
               Coupon
             = text_field_tag :coupon,nil, {class: "pure-input-1-4"}
+            = hidden_field_tag :offer_id, @offer.id
+            %button{class: "pure-button", type: "submit"}
+              Apply Coupon
+    - if @invoice && (@invoice.payments.count.positive? || @invoice.line_items.count.positive?)
+      = render 'checkouts/invoice'
+      = form_tag(checkouts_path, class: "pure-form") do
+        %fieldset
+          %div{class: "pure-u-1-4"}
+            %h5
+              Payment
             = number_field_tag :amount, @balance_remaining, {min: 0.0, max: @balance_remaining, class: "pure-input-1-4"}
             = hidden_field_tag :offer_id, @offer.id
             %button{class: "pure-button", type: "submit"}
-              Buy it
-    - if @invoice && (@invoice.payments.count.positive? || @invoice.line_items.count.positive?)
-      = render 'checkouts/invoice'
+              Make Payment
   - else
     %h2 There are no offers.
 

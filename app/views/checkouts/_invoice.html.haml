@@ -4,53 +4,76 @@
     %thead
       %tr
         %th
-          DateTime
+          Item
         %th
-          Transaction Type
+          Date
         %th
           Amount
     %tbody
-      - # FIXME: Improve this invoice visualization
-      %h4
-      - @invoice.line_items.each do |li|
+      %tr{class: "pure-table-odd"}
+        %td
+          %b Offers
+        %td
+        %td
+      - @invoice.line_items_offers.each do |li|
         %tr
-          %td
-            = li.created_at
           %td
             = "#{@invoice.offer.name} - #{li.type}"
           %td
-            = li.amount
-      %tr{class: "pure-table-odd"}
+            = li.created_at.to_date
+          %td
+            = number_to_currency(li.amount)
+      %tr
         %td
         %td
           %b Subtotal
         %td
           %b
-            = @invoice.subtotal
+            = number_to_currency(@invoice.subtotal)
       %tr{class: "pure-table-odd"}
         %td
+          %b Discounts
+        %td
+        %td
+      - @invoice.line_items_discounts.each do |li|
+        %tr
+          %td
+            = "#{@invoice.offer.name} - #{li.type}"
+          %td
+            = li.created_at.to_date
+          %td
+            = number_to_currency(li.amount)
+      %tr
+        %td
+        %td
+          %b Total
+        %td
+          %b
+            = number_to_currency(@invoice.total)
+      %tr{class: "pure-table-odd"}
         %td
           %b Payments
+        %td
         %td
       - @invoice.payments.each do |payment|
         %tr
           %td
-            = payment.created_at
-          %td
             Payment
           %td
-            = payment.amount
+            = payment.created_at.to_date
+          %td
+            = number_to_currency(payment.amount)
       %tr
         %td
         %td
           %b Total Payments
         %td
           %b
-            = @invoice.balance_paid
+            = number_to_currency(@invoice.balance_paid)
       %tr
         %td
         %td
           %b Amount Remaining
         %td
           %b
-            = @invoice.balance_remaining
+            = number_to_currency(@invoice.balance_remaining)

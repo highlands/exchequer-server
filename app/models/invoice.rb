@@ -10,6 +10,14 @@ class Invoice < ApplicationRecord
   validates :user, presence: true
   validates :due_on, presence: true
 
+  def line_items_discounts
+    line_items.where.not(coupon_id: nil)
+  end
+
+  def line_items_offers
+    line_items.where.not(offer_id: nil)
+  end
+
   def self.find_or_create_for(offer, user)
     # It creates an invoice if there is not
     # and after this it passes the invoice id
