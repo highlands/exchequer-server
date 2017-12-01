@@ -20,16 +20,18 @@ class CheckoutsController < ApplicationController
 
       LineItem.create_if_necessary_for(invoice, @offer, @coupon)
 
-      unless @coupon
-        SpreedlyTransaction.purchase(invoice, params[:amount], payment_token)
-        flash[:success] = "You've just paid for this offer"
-      end
+      checkout_without_coupon(invoice) unless @coupon
 
       redirect_to new_checkout_path(offer_id: @offer)
     end
   end
 
   private
+
+  def checkout_without_coupon(invoice)
+    SpreedlyTransaction.purchase(invoice, params[:amount], payment_token)
+    flash[:success] = "You've just paid for this offer"
+  end
 
   def find_offer_and_coupon
     @offer = Offer.find(params[:offer_id])
