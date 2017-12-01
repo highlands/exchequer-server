@@ -27,6 +27,8 @@
     %label CVV
     #spreedly-cvv{:style => "width:60px; height:35px; border: 2px solid "}
     %br/
+    %input{:id=> "card_type", :name => "card_type", :type => "hidden"}/
+    %input{:id=> "last_four_digits", :name => "last_four_digits", :type => "hidden"}/
     %input#submit-button{:disabled => "disabled", :type => "submit", :value => "Add card"}/
 
 

@@ -43,6 +43,8 @@ $(document).ready(function() {
     // Set the token in the hidden form field
     var tokenField = document.getElementById("payment_method_token");
     tokenField.setAttribute("value", token);
+    document.getElementById("last_four_digits").value = pmData.last_four_digits;
+    document.getElementById("card_type").value = pmData.card_type;
 
     // Submit the form
     var masterForm = document.getElementById("payment-form");
