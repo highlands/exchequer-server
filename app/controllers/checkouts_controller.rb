@@ -18,18 +18,10 @@ class CheckoutsController < ApplicationController
       find_offer_and_coupon
       invoice = Invoice.find_or_create_for(@offer, current_user)
 
-      begin
-        LineItem.create_if_necessary_for(invoice, @offer, @coupon)
-      rescue LineItem::CouponNotInFullPrice => e
-        flash[:error] = e.message
-      end
+      LineItem.create_if_necessary_for(invoice, @offer, @coupon)
 
       unless @coupon
-        begin
-          SpreedlyTransaction.purchase(invoice, params[:amount], payment_token)
-        rescue Spreedly::TransactionCreationError => e
-          flash[:error] = e.message
-        end
+        SpreedlyTransaction.purchase(invoice, params[:amount], payment_token)
         flash[:success] = "You've just paid for this offer"
       end
 
