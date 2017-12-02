@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201223358) do
+ActiveRecord::Schema.define(version: 20171201234439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,9 @@ ActiveRecord::Schema.define(version: 20171201223358) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "transaction_token"
+    t.bigint "payment_method_id"
     t.index ["invoice_id"], name: "index_payments_on_invoice_id"
+    t.index ["payment_method_id"], name: "index_payments_on_payment_method_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -146,4 +148,5 @@ ActiveRecord::Schema.define(version: 20171201223358) do
   add_foreign_key "offers", "managers"
   add_foreign_key "payment_methods", "users"
   add_foreign_key "payments", "invoices"
+  add_foreign_key "payments", "payment_methods"
 end
