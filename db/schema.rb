@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201234439) do
+ActiveRecord::Schema.define(version: 20171203212225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20171201234439) do
     t.datetime "updated_at", null: false
     t.string "card_type"
     t.string "last_four_digits"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_payment_methods_on_deleted_at"
     t.index ["user_id"], name: "index_payment_methods_on_user_id"
   end
 
