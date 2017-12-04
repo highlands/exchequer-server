@@ -5,6 +5,7 @@ RSpec.describe SpreedlyTransaction do
     context 'when transaction succeeds' do
       let(:invoice) { double('Invoice') }
       let(:transaction) { double('Transaction') }
+      let(:payment_method) { double('Payment Method') }
 
       before do
         allow(SpreedlyTransaction)
@@ -17,13 +18,14 @@ RSpec.describe SpreedlyTransaction do
 
       it 'creates a payment' do
         expect(Payment).to receive(:create).once
-        SpreedlyTransaction.purchase(invoice, 100, 'token')
+        SpreedlyTransaction.purchase(invoice, 100, 'token', payment_method)
       end
     end
 
     context 'when transaction does not succeed' do
       let(:invoice) { double('Invoice') }
       let(:transaction) { double('Transaction') }
+      let(:payment_method) { double('Payment Method') }
 
       before do
         allow(SpreedlyTransaction)
@@ -36,7 +38,7 @@ RSpec.describe SpreedlyTransaction do
 
       it 'creates a payment' do
         expect(Payment).not_to receive(:create)
-        SpreedlyTransaction.purchase(invoice, 100, 'token')
+        SpreedlyTransaction.purchase(invoice, 100, 'token', payment_method)
       end
     end
   end

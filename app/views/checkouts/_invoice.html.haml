@@ -59,6 +59,9 @@
         %tr
           %td
             Payment
+            %div
+              %small
+                = payment_method(payment)
           %td
             = payment.created_at.to_date
           %td
