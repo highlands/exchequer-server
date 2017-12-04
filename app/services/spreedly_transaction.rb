@@ -6,7 +6,7 @@ class SpreedlyTransaction
     )
   end
 
-  def self.purchase(invoice, amount, payment_token)
+  def self.purchase(invoice, amount, payment_token, payment_method)
     transaction = spreedly_env
       .purchase_on_gateway(
         Rails.application.secrets.gateway_token,
@@ -17,6 +17,7 @@ class SpreedlyTransaction
     if transaction.succeeded?
       Payment.create(invoice: invoice,
                      amount: amount,
+                     payment_method: payment_method,
                      transaction_token: transaction.token)
     end
   rescue Spreedly::TransactionCreationError => e
