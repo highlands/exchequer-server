@@ -34,7 +34,9 @@ class CheckoutsController < ApplicationController
   end
 
   def checkout_without_coupon
-    Checkout.without_coupon(@invoice, params[:amount], payment_token)
+    # TODO: Get payment method
+    payment_method = current_user.payment_methods.first
+    Checkout.without_coupon(@invoice, params[:amount], payment_token, payment_method)
     flash[:success] = "You've just paid for this offer"
   end
 
@@ -43,6 +45,7 @@ class CheckoutsController < ApplicationController
   end
 
   def find_offer_and_coupon
+    # raise an exception here when the offer does not exist
     @offer = Offer.find(params[:offer_id])
     coupon_name = params[:coupon]
     @coupon = Coupon.find_by(name: coupon_name, offer: @offer)

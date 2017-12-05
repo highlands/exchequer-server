@@ -7,6 +7,9 @@ end
 
 gem 'highlands_auth', git: 'git@github.com:highlands/highlands_auth.git', branch: 'master'
 
+# Paranoia
+gem 'paranoia', '~> 2.4.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record

@@ -7,6 +7,7 @@ ActiveAdmin.register Coupon do
         collection: Offer.all,
         member_label: proc { |offer| offer.name.to_s }
       f.input :name
+      f.input :code
       f.input :percent_off
       f.input :amount_off
     end
