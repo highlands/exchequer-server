@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :payment_methods, dependent: :destroy
 
   def payment_method_present?
-    payment_methods.any?
+    payment_methods.without_deleted.any?
   end
 
   def logout!

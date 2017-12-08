@@ -2,11 +2,6 @@ class CheckoutsController < ApplicationController
   before_action :check_path
 
   def new
-    # If user has no payment method yet
-    # redirect to payment method
-    # once the payment method is added, go back to buy and have the offer_id as
-    # params
-    redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
     @offer = Offer.find_by(id: params[:offer_id])
     @invoice = Invoice.find_or_create_for(@offer, current_user)
 
@@ -14,6 +9,11 @@ class CheckoutsController < ApplicationController
   end
 
   def create
+    # If user has no payment method yet
+    # redirect to payment method
+    # once the payment method is added, go back to buy and have the offer_id as
+    # params
+    redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
     ActiveRecord::Base.transaction do
       find_offer_and_coupon
       find_or_create_invoice
