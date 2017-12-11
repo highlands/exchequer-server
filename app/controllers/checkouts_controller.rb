@@ -34,8 +34,11 @@ class CheckoutsController < ApplicationController
   end
 
   def checkout_without_coupon
-    # TODO: Get payment method
-    payment_method = current_user.payment_methods.first
+    payment_method = current_user.payment_methods.find_by(id: params[:payment_method_id])
+    unless payment_method
+      raise PaymentMethod::NoPaymentMethod,
+        "You're trying to use a payment method that doesn't belong to you"
+    end
     Checkout.without_coupon(@invoice, params[:amount], payment_token, payment_method)
     flash[:success] = "You've just paid for this offer"
   end

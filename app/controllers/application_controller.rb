@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include HighlandsAuth::ApplicationHelper
   protect_from_forgery with: :exception
   rescue_from LineItem::CouponNotInFullPrice, with: :flash_and_redirect
+  rescue_from PaymentMethod::NoPaymentMethod, with: :flash_and_redirect
   rescue_from Spreedly::TransactionCreationError, with: :flash_and_redirect
 
   def flash_and_redirect(exception)
