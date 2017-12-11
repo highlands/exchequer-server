@@ -61,7 +61,7 @@
             Payment
             %div
               %small
-                = payment_method(payment)
+                = payment.payment_method.to_s
           %td
             = payment.created_at.to_date
           %td

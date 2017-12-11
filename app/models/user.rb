@@ -3,8 +3,12 @@ class User < ApplicationRecord
   validates :email, presence: true
   has_many :payment_methods, dependent: :destroy
 
+  def available_payment_methods
+    payment_methods.without_deleted
+  end
+
   def payment_method_present?
-    payment_methods.without_deleted.any?
+    available_payment_methods.any?
   end
 
   def logout!

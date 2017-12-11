@@ -21,7 +21,7 @@
               Apply Coupon
     - if @invoice && (@invoice.payments.count.positive? || @invoice.line_items.count.positive?)
       = render 'checkouts/invoice'
-    = form_tag(checkouts_path, class: "pure-form") do
+    = form_tag(payment_methods_choose_path, class: "pure-form") do
       %fieldset
         %div{class: "pure-u-1-4"}
           %h5

@@ -3,6 +3,13 @@ class PaymentMethodsController < ApplicationController
 
   def new; end
 
+  def choose
+    redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
+    @amount = params[:amount]
+    @offer = Offer.find(params[:offer_id])
+    @payment_methods = current_user.available_payment_methods
+  end
+
   def create
     token = params[:payment_method_token]
     card_type = params[:card_type]
