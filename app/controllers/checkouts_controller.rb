@@ -14,8 +14,11 @@ class CheckoutsController < ApplicationController
     # once the payment method is added, go back to buy and have the offer_id as
     # params
     redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
+
+    find_offer_and_coupon
+    Checkout.pre_validation(@offer, params[:amount])
+
     ActiveRecord::Base.transaction do
-      find_offer_and_coupon
       find_or_create_invoice
 
       LineItem.create_or_find_for_offer(@invoice, @offer)

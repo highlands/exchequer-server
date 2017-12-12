@@ -1,4 +1,7 @@
 class Offer < ApplicationRecord
+  DueOnExpired = Class.new(StandardError)
+  DeferrableNotAllowed = Class.new(StandardError)
+
   # An Offer is a thing people can pay towards. It has a required name and
   # description, and belongs to an application.
 
