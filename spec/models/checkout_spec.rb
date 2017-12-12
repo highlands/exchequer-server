@@ -6,7 +6,7 @@ RSpec.describe Checkout, type: :model do
     let(:amount) { 300 }
 
     context 'when due_on is not expired' do
-      let(:offer) { double('Offer', due_on: Time.zone.now + 3.days) }
+      let(:offer) { double('Offer', due_on: Time.zone.now + 3.days, deferrable: true) }
 
       it 'does not raise any exception' do
         expect { Checkout.pre_validation(offer, amount) }.not_to raise_error
@@ -14,7 +14,7 @@ RSpec.describe Checkout, type: :model do
     end
 
     context 'when due_on is expired' do
-      let(:offer) { double('Offer', due_on: Time.zone.now - 3.days) }
+      let(:offer) { double('Offer', due_on: Time.zone.now - 3.days, deferrable: true) }
 
       it 'raises an exception' do
         expect { Checkout.pre_validation(offer, amount) }.to raise_error(Offer::DueOnExpired)
@@ -24,7 +24,7 @@ RSpec.describe Checkout, type: :model do
     context 'when offer is not deferrable' do
       let(:offer) do
         double('Offer',
-          due_on: Time.zone.now - 3.days,
+          due_on: Time.zone.now + 3.days,
           deferrable: false, amount: 100)
       end
 
