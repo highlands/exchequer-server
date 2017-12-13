@@ -22,7 +22,9 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   end
 
   step 'I click Make Payment' do
-    click_on('Make Payment')
+    pending 'Check on how to make payments' do
+      click_on('Make Payment')
+    end
   end
 
   step 'I should be redirected to add a Payment Method' do
