@@ -18,6 +18,7 @@ Feature: Buying an Offer
     Then I should be redirected to add a Payment Method
     Then I should see the payment form
 
+  @javascript
   Scenario: User buys an offer when He has a Payment Method
     Given I am logged in
     And I have a Payment Method
