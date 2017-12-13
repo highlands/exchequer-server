@@ -22,7 +22,7 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   end
 
   step 'I click Make Payment' do
-    sleep 0.5
+    sleep 1
     click_on('Make Payment')
   end
 

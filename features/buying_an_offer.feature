@@ -10,7 +10,6 @@ Feature: Buying an Offer
     Then I should see make payment button
     Then I should see the apply coupon button
 
-  @javascript
   Scenario: User buys an offer when He doesn't have a Payment Method
     Given I am logged in
     And I am in the checkout page
