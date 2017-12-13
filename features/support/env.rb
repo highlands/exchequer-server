@@ -40,6 +40,6 @@ Capybara.register_driver :headless_chrome do |app|
 end
 
 Spinach.hooks.on_tag('javascript') do
-  ::Capybara.current_driver = :headless_chrome
+  ::Capybara.current_driver = ::Capybara.javascript_driver
   Capybara.current_session.current_window.resize_to(1920, 1080)
 end
