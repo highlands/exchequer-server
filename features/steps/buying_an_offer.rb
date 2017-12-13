@@ -22,9 +22,7 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   end
 
   step 'I click Make Payment' do
-    pending 'Check on how to make payments' do
-      click_on('Make Payment')
-    end
+    click_on('Make Payment')
   end
 
   step 'I should be redirected to add a Payment Method' do
@@ -40,9 +38,7 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   end
 
   step 'I should see a message I just paid for this offer' do
-    pending 'We cannot make payment yet because the token is not stored on spreedly' do
-      expect(page).to have_content("You've just paid for this offer")
-    end
+    expect(page).to have_content("You've just paid for this offer")
   end
 
   step 'I should see the payment form' do
@@ -58,7 +54,7 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
 
   step 'I have a Payment Method' do
     user = User.find_by(email: ENV['HIGHLANDS_SSO_EMAIL'])
-    user.payment_methods << FactoryGirl.create(:payment_method)
+    user.payment_methods << FactoryGirl.create(:payment_method, token: ENV['PAYMENT_METHOD_TEST_TOKEN'])
     user.save!
   end
 end
