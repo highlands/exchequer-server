@@ -2,7 +2,7 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   include CommonSteps::Login
 
   step 'I am in the checkout page' do
-    FactoryGirl.create(:offer)
+    FactoryGirl.create(:offer, due_on: Time.zone.now + 3.days, deferrable: true)
     visit '/checkouts/new?offer_id=1'
     expect(page).to have_content('Buy an Offer')
   end
@@ -25,8 +25,22 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     click_on('Make Payment')
   end
 
-  step 'I should be redirected to choose my Payment Method' do
+  step 'I should be redirected to add a Payment Method' do
     expect(page).to have_content('Add PaymentMethod Form')
+  end
+
+  step 'I should be redirected to choose a Payment Method' do
+    expect(page).to have_content('Choose your card')
+  end
+
+  step 'I should be redirected to the Offer page' do
+    expect(page).to have_content('Buy an Offer')
+  end
+
+  step 'I should see a message I just paid for this offer' do
+    pending 'We cannot make payment yet because the token is not stored on spreedly' do
+      expect(page).to have_content("You've just paid for this offer")
+    end
   end
 
   step 'I should see the payment form' do
@@ -38,5 +52,11 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
       fill_in('year', with: '2030')
       click_on('Add card')
     end
+  end
+
+  step 'I have a Payment Method' do
+    user = User.find_by(email: ENV['HIGHLANDS_SSO_EMAIL'])
+    user.payment_methods << FactoryGirl.create(:payment_method)
+    user.save!
   end
 end
