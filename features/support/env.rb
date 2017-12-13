@@ -30,6 +30,6 @@ Capybara.register_driver :selenium do |app|
 end
 
 Spinach.hooks.on_tag('javascript') do
-  ::Capybara.current_driver = ::Capybara.javascript_driver
+  ::Capybara.current_driver = :selenium
   Capybara.current_session.current_window.resize_to(1920, 1080)
 end
