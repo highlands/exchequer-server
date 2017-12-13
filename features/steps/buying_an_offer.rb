@@ -22,7 +22,12 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   end
 
   step 'I click Make Payment' do
-    sleep 1
+    click_on('Make Payment')
+  end
+
+  step 'I click Make Payment in the Choose Payment Method page' do
+    expect(page).to have_content('Make Payment')
+    expect(page).to have_content('Choose your card')
     click_on('Make Payment')
   end
 

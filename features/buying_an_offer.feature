@@ -25,6 +25,6 @@ Feature: Buying an Offer
     And I fill out the amount I want to pay
     And I click Make Payment
     Then I should be redirected to choose a Payment Method
-    And I click Make Payment
+    And I click Make Payment in the Choose Payment Method page
     Then I should be redirected to the Offer page
     And I should see a message I just paid for this offer
