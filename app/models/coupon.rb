@@ -1,4 +1,5 @@
 class Coupon < ApplicationRecord
+  NotFound = Class.new(StandardError)
   # A coupon belongs to an offer, and discounts the total amount of that offer
   # either via a percentage (`percent_off`) or via a flat amount (`amount_off`)
   belongs_to :offer
