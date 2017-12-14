@@ -13,9 +13,9 @@ class CheckoutsController < ApplicationController
     # redirect to payment method
     # once the payment method is added, go back to buy and have the offer_id as
     # params
-    redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
-
     find_offer_and_coupon
+    redirect_to(new_payment_method_path) && return unless current_user.payment_method_present? || @coupon
+
     Checkout.pre_validation(@offer, params[:amount])
 
     ActiveRecord::Base.transaction do
@@ -55,6 +55,7 @@ class CheckoutsController < ApplicationController
     @offer = Offer.find(params[:offer_id])
     coupon_name = params[:coupon]
     @coupon = Coupon.find_by(name: coupon_name, offer: @offer)
+    raise Coupon::NotFound, 'This coupon does not exist' if coupon_name && !@coupon
   end
 
   def payment_token

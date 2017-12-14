@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include HighlandsAuth::ApplicationHelper
   protect_from_forgery with: :exception
+  # Coupon exceptions
+  rescue_from Coupon::NotFound, with: :flash_and_redirect
   # Offer exceptions
   rescue_from Offer::DueOnExpired, with: :flash_and_redirect
   rescue_from Offer::DeferrableNotAllowed, with: :flash_and_redirect

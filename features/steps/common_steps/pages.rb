@@ -3,7 +3,7 @@ module CommonSteps
     include Spinach::DSL
 
     step 'I am in the checkout page' do
-      FactoryGirl.create(:offer, due_on: Time.zone.now + 3.days, deferrable: true)
+      FactoryGirl.create(:offer, id: 1, due_on: Time.zone.now + 3.days, deferrable: true)
       visit '/checkouts/new?offer_id=1'
       expect(page).to have_content('Buy an Offer')
     end
