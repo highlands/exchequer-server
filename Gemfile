@@ -71,6 +71,7 @@ group :development, :test do
   gem 'simplecov', '~> 0.15.1', require: false
   gem 'simplecov-json', require: false
   gem 'spinach-rails', '~> 0.2.1'
+  gem 'vcr', '~>4.0.0'
   gem 'webmock', '~> 3.1.0'
 end
 
