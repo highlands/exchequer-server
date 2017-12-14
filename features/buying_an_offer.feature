@@ -10,14 +10,6 @@ Feature: Buying an Offer
     Then I should see make payment button
     Then I should see the apply coupon button
 
-  Scenario: User buys an offer when He doesn't have a Payment Method
-    Given I am logged in
-    And I am in the checkout page
-    Then I fill out the amount I want to pay
-    And I click Make Payment
-    Then I should be redirected to add a Payment Method
-    Then I should see the payment form
-
   @javascript
   Scenario: User buys an offer when He has a Payment Method
     Given I am logged in
@@ -29,3 +21,27 @@ Feature: Buying an Offer
     And I click Make Payment in the Choose Payment Method page
     Then I should be redirected to the Offer page
     And I should see a message I just paid for this offer
+
+  @javascript
+  Scenario: User tries to buy an expired an offer
+    Given I am logged in
+    And I have a Payment Method
+    Then I am in the checkout page seeing an expired offer
+    And I fill out the amount I want to pay
+    And I click Make Payment
+    Then I should be redirected to choose a Payment Method
+    And I click Make Payment in the Choose Payment Method page
+    Then I should be redirected to the Offer page
+    And I should see a message You cannot pay for this offer anymore
+
+  @javascript
+  Scenario: User tries to pay not the full price for a undeferrable offer
+    Given I am logged in
+    And I have a Payment Method
+    Then I am in the checkout page seeing an undeferrable offer whose amount is 100
+    And I fill out 1 USD as the amount I want to pay
+    And I click Make Payment
+    Then I should be redirected to choose a Payment Method
+    And I click Make Payment in the Choose Payment Method page
+    Then I should be redirected to the Offer page
+    And I should see a message Deferrable is not allowed for this offer

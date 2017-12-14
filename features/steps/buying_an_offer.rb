@@ -1,11 +1,6 @@
 class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   include CommonSteps::Login
-
-  step 'I am in the checkout page' do
-    FactoryGirl.create(:offer, due_on: Time.zone.now + 3.days, deferrable: true)
-    visit '/checkouts/new?offer_id=1'
-    expect(page).to have_content('Buy an Offer')
-  end
+  include CommonSteps::Pages
 
   step 'I should see make payment button' do
     # FIXME: Check for button css
@@ -21,6 +16,10 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     fill_in 'amount', with: 100
   end
 
+  step 'I fill out 1 USD as the amount I want to pay' do
+    fill_in 'amount', with: 1
+  end
+
   step 'I click Make Payment' do
     click_on('Make Payment')
   end
@@ -31,20 +30,16 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     click_on('Make Payment')
   end
 
-  step 'I should be redirected to add a Payment Method' do
-    expect(page).to have_content('Add PaymentMethod Form')
-  end
-
-  step 'I should be redirected to choose a Payment Method' do
-    expect(page).to have_content('Choose your card')
-  end
-
-  step 'I should be redirected to the Offer page' do
-    expect(page).to have_content('Buy an Offer')
-  end
-
   step 'I should see a message I just paid for this offer' do
     expect(page).to have_content("You've just paid for this offer")
+  end
+
+  step 'I should see a message You cannot pay for this offer anymore' do
+    expect(page).to have_content('This offer cannot be paid anymore')
+  end
+
+  step 'I should see a message Deferrable is not allowed for this offer' do
+    expect(page).to have_content('Deferrable is not allowed for this offer')
   end
 
   step 'I should see the payment form' do
