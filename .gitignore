@@ -3,6 +3,9 @@
 /vendor/bundle/
 /vendor/ruby/
 
+# Do not commit vcr cassetes, it contains some tokens
+/fixtures/vcr_cassettes/*
+
 # minimal Rails specific artifacts
 db/*.sqlite3
 /db/*.sqlite3-journal
