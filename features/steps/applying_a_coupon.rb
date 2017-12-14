@@ -8,7 +8,7 @@ class Spinach::Features::ApplyingACoupon < Spinach::FeatureSteps
 
   step 'I have a valid coupon code' do
     offer = Offer.find(1)
-    offer.coupons << FactoryGirl.create(:coupon, name: 'TEST', code: 'TEST', percent_off: 0.5)
+    offer.coupons << FactoryGirl.create(:coupon, name: 'TEST', code: 'TEST', percent_off: 0.5, offer: offer)
     offer.save!
   end
 
