@@ -33,6 +33,10 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, timeout: 100)
+end
+
 Capybara.javascript_driver = :poltergeist
 
 Spinach.hooks.on_tag('javascript') do
