@@ -8,7 +8,7 @@ ActiveAdmin.register Offer do
         member_label: proc { |manager| manager.name.to_s }
       f.input :description
       f.input :name
-      f.input :due_on
+      f.input :due_on, as: :datepicker
       f.input :amount
       f.input :deferrable
     end
