@@ -4,7 +4,8 @@ function submitPaymentForm() {
   // Get required, non-sensitive, values from host page
   requiredFields["full_name"] = document.getElementById("full_name").value;
   requiredFields["month"] = document.getElementById("month").value;
-  requiredFields["year"] = document.getElementById("year").value;
+  // Prepend 20 in the year
+  requiredFields["year"] = "20" + document.getElementById("year").value;
 
   Spreedly.tokenizeCreditCard(requiredFields);
 }
