@@ -33,10 +33,17 @@ $(document).ready(function() {
   });
 
   Spreedly.on("errors", function(errors) {
+    var errorsDiv = document.getElementById("errors");
+
+    errorsDiv.classList.remove("hidden");
+    errorsDiv.innerHTML = "<ul>";
     for (var i = 0; i < errors.length; i++) {
       var error = errors[i];
+      var message = errors[i].message;
+      errorsDiv.innerHTML += "<li>" + message + "</li>";
       console.log(error);
     }
+    errorsDiv.innerHTML += "</ul>";
   });
 
   Spreedly.on("paymentMethod", function(token, pmData) {

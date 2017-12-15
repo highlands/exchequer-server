@@ -5,28 +5,41 @@
   %script{src: "https://core.spreedly.com/iframe/iframe-v1.min.js"}
 = javascript_include_tag 'add_payment_method'
 
-%h1 Add Paymen Method
 
 %body
-  %form#payment-form{:method=> :post, :action => "/payment_methods", :onsubmit => "submitPaymentForm(); return false;"}
-    %input#payment_method_token{:name => "payment_method_token", :type => "hidden"}/
-    %label{:for => "full_name"} Name
-    %input#full_name{:name => "full_name", :type => "text"}/
-    %br/
-    %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}/
-    %label Credit Card Number
-    #spreedly-number{:style => "width:225px; height:35px; border: 2px solid"}
-    %br/
-    %label{:for => "spreedly-exp-month"} Expiration Date
-    %input#month{:maxlength => "2", :name => "month", :type => "text"}/
-    %input#year{:maxlength => "4", :name => "year", :type => "text"}/
-    %br/
-    %label CVV
-    #spreedly-cvv{:style => "width:60px; height:35px; border: 2px solid "}
-    %br/
-    %input{:id=> "card_type", :name => "card_type", :type => "hidden"}/
-    %input{:id=> "last_four_digits", :name => "last_four_digits", :type => "hidden"}/
-    %input#submit-button{:disabled => "disabled", :type => "submit", :value => "Add card"}/
+  %form#payment-form{:method=> :post, :action => "/payment_methods", :onsubmit => "submitPaymentForm(); return false;", :class=> "pure-form"}
+    %div.pure-g
+      %div.pure-u-1
+        %h1 Add Payment Method
+        %div.pure-u-1-2
+          #errors.pure-u-1.error.hidden
+      %input#payment_method_token{name: :payment_method_token, type: :hidden}
+      %input{name: :authenticity_token, type: :hidden, value: form_authenticity_token}
+      %input{id: :card_type, name: :card_type, type: :hidden }
+      %input{id: :last_four_digits, name: :last_four_digits, type: :hidden }
+
+      %div.pure-u-1
+        %div.pure-u-1-2
+          %fieldset
+            %legend Name in the Card
+          %input#full_name{name: :full_name, type: :text, class: 'pure-u-1-2'}
+      %div.pure-u-1
+        %div.pure-u-1-2
+          %fieldset
+            %legend Credit Card Number
+            #spreedly-number{style: "width:250px; height: 35px;", class: 'input-pure-css'}
+      %div.pure-u-1-2
+        %fieldset
+          %legend Expiration Date
+          %input#month{maxlength: 2, name: :month, type: :text, placeholder: 'MM', class: 'pure-u-1-8'}
+          \/
+          %input#year{maxlength: 4, name: :year, type: :text, placeholder: 'YYYY', class: 'pure-u-1-8'}
+      %div.pure-u-1
+        %div.pure-u-1-2
+          %fieldset
+            %legend CVV
+            #spreedly-cvv{style: 'width:60px; height:35px;', class: 'input-pure-css'}
+      %input#submit-button{disabled: :disabled, type: :submit, value: 'Add Card', class: 'pure-button'}
 
 
 :javascript
