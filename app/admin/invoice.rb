@@ -1,14 +1,20 @@
 ActiveAdmin.register Invoice do
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  form do |f|
+    f.semantic_errors
+    f.inputs do
+      f.input :offer,
+        as: :searchable_select,
+        collection: Offer.all,
+        member_label: proc { |o| o.name.to_s }
+      f.input :user,
+        as: :searchable_select,
+        collection: User.all,
+        member_label: proc { |u| u.email.to_s }
+      f.input :due_on, as: :datepicker
+    end
+    f.actions
+  end
+  permit_params do
+    %i[offer_id user_id due_on]
+  end
 end
