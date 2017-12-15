@@ -5,11 +5,8 @@
   %script{src: "https://core.spreedly.com/iframe/iframe-v1.min.js"}
 = javascript_include_tag 'add_payment_method'
 
-%h1 Add PaymentMethod Form
+%h1 Add Paymen Method
 
-%div
-  %a{:href => "https://docs.spreedly.com/reference/test-data/"}
-    Test Data Cards
 %body
   %form#payment-form{:method=> :post, :action => "/payment_methods", :onsubmit => "submitPaymentForm(); return false;"}
     %input#payment_method_token{:name => "payment_method_token", :type => "hidden"}/
