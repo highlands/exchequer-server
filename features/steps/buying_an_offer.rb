@@ -38,8 +38,8 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     expect(page).to have_content('This offer cannot be paid anymore')
   end
 
-  step 'I should see a message Deferrable is not allowed for this offer' do
-    expect(page).to have_content('Deferrable is not allowed for this offer')
+  step 'I should see a message You cannot make a partial payment towards this offer' do
+    expect(page).to have_content('You cannot make a partial payment towards this offer')
   end
 
   step 'I should see the payment form' do

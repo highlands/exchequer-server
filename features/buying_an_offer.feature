@@ -44,4 +44,4 @@ Feature: Buying an Offer
     Then I should be redirected to choose a Payment Method
     And I click Make Payment in the Choose Payment Method page
     Then I should be redirected to the Offer page
-    And I should see a message Deferrable is not allowed for this offer
+    And I should see a message You cannot make a partial payment towards this offer

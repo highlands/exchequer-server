@@ -7,7 +7,7 @@ class Checkout
 
       unless offer.deferrable
         if amount.to_d < offer.amount
-          raise Offer::DeferrableNotAllowed, 'Deferrable is not allowed for this offer.'
+          raise Offer::DeferrableNotAllowed, 'You cannot make a partial payment towards this offer'
         end
       end
     end
