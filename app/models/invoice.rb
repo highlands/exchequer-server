@@ -1,4 +1,7 @@
 class Invoice < ApplicationRecord
+  UNPAID = 'Unpaid'.freeze
+  PARTIALLY_PAID = 'Partially Paid'.freeze
+  PAID = 'Paid'.freeze
   # An Invoice is a history of transactions towards an offer for a given user
   belongs_to :offer
   belongs_to :user
@@ -9,6 +12,12 @@ class Invoice < ApplicationRecord
   validates :offer, presence: true
   validates :user, presence: true
   validates :due_on, presence: true
+
+  def status
+    return PAID if balance_remaining.zero?
+    return PARTIALLY_PAID if balance_remaining < total
+    return UNPAID if balance_remaining == total
+  end
 
   def line_items_discounts
     line_items.where.not(coupon_id: nil)
