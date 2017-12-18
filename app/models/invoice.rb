@@ -19,6 +19,10 @@ class Invoice < ApplicationRecord
     return UNPAID if balance_remaining == total
   end
 
+  def applied_coupon?
+    line_items_discounts.count.positive?
+  end
+
   def line_items_discounts
     line_items.where.not(coupon_id: nil)
   end
