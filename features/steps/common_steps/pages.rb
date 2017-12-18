@@ -21,7 +21,11 @@ module CommonSteps
     end
 
     step 'I should be redirected to add a Payment Method' do
-      expect(page).to have_content('Add PaymentMethod Form')
+      expect(page).to have_content('Add Payment Method')
+      expect(page).to have_content('Name in the Card')
+      expect(page).to have_content('Credit Card Number')
+      expect(page).to have_content('Expiration Date')
+      expect(page).to have_content('CVV')
     end
 
     step 'I should be redirected to the Offer page' do

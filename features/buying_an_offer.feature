@@ -21,14 +21,12 @@ Feature: Buying an Offer
     And I should see a message I just paid for this offer
 
   @javascript
-  Scenario: User tries to buy an expired an offer
+  Scenario: User tries to buy when he does not have a Payment Method
     Given I am logged in
-    And I have a Payment Method
-    Then I am in the checkout page seeing an expired offer
+    Then I am in the checkout page
     And I fill out the amount I want to pay
     And I click Make Payment
-    Then I should be redirected to the Offer page
-    And I should see a message You cannot pay for this offer anymore
+    Then I should be redirected to add a Payment Method
 
   @javascript
   Scenario: User tries to pay not the full price for a undeferrable offer
