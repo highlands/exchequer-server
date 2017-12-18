@@ -5,14 +5,18 @@
         Payment
       = number_field_tag :amount, @balance_remaining, {min: 0.0, max: @balance_remaining, class: "pure-input-1-4"}
       = hidden_field_tag :offer_id, @offer.id
-      %div
-        %ul
-          = collection_radio_buttons(nil, :payment_method_id, @payment_methods, :id, :to_s) do |b|
-            %li
-              = b.label { b.radio_button }
-              = b.text
-              = link_to 'X', payment_method_path(b.value), method: :delete, id: "delete-payment-method-#{b.value}", data: {confirm: 'Are you sure?'}
-      %div
-        = link_to "Add a new card", new_payment_method_path
+      -if @payment_methods.count.positive?
+        %div
+          %ul
+            = collection_radio_buttons(nil, :payment_method_id, @payment_methods, :id, :to_s) do |b|
+              %li
+                = b.label { b.radio_button }
+                = b.text
+                = link_to 'X', payment_method_path(b.value), method: :delete, id: "delete-payment-method-#{b.value}", data: {confirm: 'Are you sure?'}
+        %div
+          = link_to 'Add a new card', new_payment_method_path
+      - else
+        %div
+          = link_to 'Add a Payment Method', new_payment_method_path
       %button{class: "pure-button", type: "submit"}
         Make Payment

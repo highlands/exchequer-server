@@ -7,6 +7,10 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     expect(page).to have_content('Make Payment')
   end
 
+  step 'I should see a link to Add a Payment Method' do
+    expect(page).to have_content('Add a Payment Method')
+  end
+
   step 'I should see the apply coupon button' do
     # FIXME: Check for button css
     expect(page).to have_content('Apply Coupon')

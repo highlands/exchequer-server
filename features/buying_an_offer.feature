@@ -24,6 +24,7 @@ Feature: Buying an Offer
   Scenario: User tries to buy when he does not have a Payment Method
     Given I am logged in
     Then I am in the checkout page
+    And I should see a link to Add a Payment Method
     And I fill out the amount I want to pay
     And I click Make Payment
     Then I should be redirected to add a Payment Method
