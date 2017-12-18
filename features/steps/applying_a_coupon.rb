@@ -63,7 +63,7 @@ class Spinach::Features::ApplyingACoupon < Spinach::FeatureSteps
     expect(page).to have_css('.payments')
   end
 
-  step 'I should see a message saying I can only apply coupon in the full price' do
-    expect(page).to have_content('You can only apply the coupon in the full price')
+  step "I should see a message saying I can't apply a coupon after made a payment" do
+    expect(page).to have_content("You can't apply a coupon after you've made a payment")
   end
 end

@@ -57,5 +57,5 @@ Feature: Applying a Coupon
     And I fill in my coupon code
     And I click Apply Coupon
     Then I should be redirected to the Offer page
-    And I should see a message saying I can only apply coupon in the full price
+    And I should see a message saying I can't apply a coupon after made a payment
 

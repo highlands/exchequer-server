@@ -32,7 +32,7 @@ class LineItem < ApplicationRecord
                                  quantity: 1,
                                  amount: coupon.discounted_price)
     else
-      raise CouponNotInFullPrice, 'You can only apply the coupon in the full price'
+      raise CouponNotInFullPrice, "You can't apply a coupon after you've made a payment"
     end
   end
 
