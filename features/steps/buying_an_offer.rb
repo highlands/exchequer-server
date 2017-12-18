@@ -24,12 +24,24 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     fill_in 'amount', with: 100
   end
 
-  step 'I fill out 1 USD as the amount I want to pay' do
-    fill_in 'amount', with: 1
+  step 'I cannot fill out 1 USD as the amount I want to pay' do
+    expect(page).not_to have_selector('amount')
   end
 
   step 'I click Make Payment' do
     click_on('Make Payment')
+  end
+
+  step 'I click Pay full amount' do
+    click_on('Pay full amount')
+  end
+
+  step 'I can see the Pay full amount button' do
+    expect(page).to have_content('Pay full amount')
+  end
+
+  step 'I dont see the Make payment button' do
+    expect(page).not_to have_content('Make Payment')
   end
 
   step 'I choose the Payment Method' do

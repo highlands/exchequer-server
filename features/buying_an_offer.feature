@@ -29,12 +29,19 @@ Feature: Buying an Offer
     And I should not see the Make Payment button
 
   @javascript
-  Scenario: User tries to pay not the full price for a undeferrable offer
+  Scenario: User can only pay the full amount for a not deferrable offer
     Given I am logged in
     And I have a Payment Method
     Then I am in the checkout page seeing an undeferrable offer whose amount is 100
-    And I fill out 1 USD as the amount I want to pay
     And I choose the Payment Method
-    And I click Make Payment
+    And I click Pay full amount
     Then I should be redirected to the Offer page
-    And I should see a message You cannot make a partial payment towards this offer
+    And I should see a message I just paid for this offer
+
+  @javascript
+  Scenario: User can only see the Pay full amount button and not the make payment button for a not deferrable offer
+    Given I am logged in
+    And I have a Payment Method
+    Then I am in the checkout page seeing an undeferrable offer whose amount is 100
+    And I can see the Pay full amount button
+    And I dont see the Make payment button
