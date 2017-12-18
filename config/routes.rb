@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount HighlandsAuth::Engine => "/highlands_sso", :as => "auth"
 
   # PaymentMethod
-  resources :payment_methods, only: [:new, :create]
+  resources :payment_methods, only: [:new, :create, :destroy]
   post 'payment_methods/choose' => 'payment_methods#choose'
 
   # Checkouts

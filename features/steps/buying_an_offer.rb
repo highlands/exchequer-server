@@ -24,6 +24,10 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     click_on('Make Payment')
   end
 
+  step 'I choose the Payment Method' do
+    choose 'payment_method_id_1'
+  end
+
   step 'I click Make Payment in the Choose Payment Method page' do
     expect(page).to have_content('Make Payment')
     expect(page).to have_content('Choose your card')
@@ -55,7 +59,7 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
 
   step 'I have a Payment Method' do
     user = User.find_by(email: ENV['HIGHLANDS_SSO_EMAIL'])
-    user.payment_methods << FactoryGirl.create(:payment_method, token: ENV['PAYMENT_METHOD_TEST_TOKEN'])
+    user.payment_methods << FactoryGirl.create(:payment_method, token: ENV['PAYMENT_METHOD_TEST_TOKEN'], user: user)
     user.save!
   end
 end

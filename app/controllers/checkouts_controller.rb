@@ -4,6 +4,7 @@ class CheckoutsController < ApplicationController
   def new
     @offer = Offer.find_by(id: params[:offer_id])
     @invoice = Invoice.find_or_create_for(@offer, current_user)
+    @payment_methods = current_user.available_payment_methods
 
     @balance_remaining = @invoice.balance_remaining
   end

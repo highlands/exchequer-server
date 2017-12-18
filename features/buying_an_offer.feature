@@ -12,13 +12,11 @@ Feature: Buying an Offer
 
   @javascript
   Scenario: User buys an offer when He has a Payment Method
-    Given I am logged in
-    And I have a Payment Method
+    Given I am logged in with a Payment Method
     Then I am in the checkout page
     And I fill out the amount I want to pay
+    And I choose the Payment Method
     And I click Make Payment
-    Then I should be redirected to choose a Payment Method
-    And I click Make Payment in the Choose Payment Method page
     Then I should be redirected to the Offer page
     And I should see a message I just paid for this offer
 
@@ -29,8 +27,6 @@ Feature: Buying an Offer
     Then I am in the checkout page seeing an expired offer
     And I fill out the amount I want to pay
     And I click Make Payment
-    Then I should be redirected to choose a Payment Method
-    And I click Make Payment in the Choose Payment Method page
     Then I should be redirected to the Offer page
     And I should see a message You cannot pay for this offer anymore
 
@@ -41,7 +37,5 @@ Feature: Buying an Offer
     Then I am in the checkout page seeing an undeferrable offer whose amount is 100
     And I fill out 1 USD as the amount I want to pay
     And I click Make Payment
-    Then I should be redirected to choose a Payment Method
-    And I click Make Payment in the Choose Payment Method page
     Then I should be redirected to the Offer page
     And I should see a message You cannot make a partial payment towards this offer

@@ -23,4 +23,15 @@ class PaymentMethodsController < ApplicationController
     flash[:success] = 'Payment method added'
     redirect_to RedirectionManager.path_for(session[:from])
   end
+
+  def destroy
+    begin
+      payment_method = current_user.payment_methods.find(params[:id])
+      payment_method.destroy
+      flash[:success] = 'Payment method deleted'
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "We couldn't find this payment method"
+    end
+    redirect_back(fallback_location: root_path)
+  end
 end
