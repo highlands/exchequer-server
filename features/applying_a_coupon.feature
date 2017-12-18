@@ -14,6 +14,17 @@ Feature: Applying a Coupon
     And I should see a message saying my coupon was applied
     And I should see the coupon applied in my invoice
 
+  Scenario: Coupon codes are case insensitive
+    Given I am logged in
+    And I am in the checkout page
+    And I have a valid coupon code for DAILY
+    Then I should see the apply coupon button
+    And I fill in my coupon code with daily, downcase
+    And I click Apply Coupon
+    Then I should be redirected to the Offer page
+    And I should see a message saying my coupon was applied
+    And I should see the coupon applied in my invoice
+
   Scenario: User should not see Apply Coupon button after applied
     Given I am logged in
     And I am in the checkout page
@@ -27,11 +38,11 @@ Feature: Applying a Coupon
     And I should not see the apply coupon button
 
 
-  Scenario: User apply an invalid coupon code
+  Scenario: User apply an unexistent coupon code
     Given I am logged in
     And I am in the checkout page
     Then I should see the apply coupon button
-    And I fill in my coupon code
+    And I fill in a wrong coupon code
     And I click Apply Coupon
     Then I should be redirected to the Offer page
     And I should see a message saying my coupon does not exist

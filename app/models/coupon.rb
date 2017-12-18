@@ -8,6 +8,8 @@ class Coupon < ApplicationRecord
   validates :offer, presence: true
   validate :ensure_discount
   validate :ensure_single_discount
+  before_validation { |coupon| coupon.code.downcase! }
+  before_save { |coupon| coupon.code.downcase! }
 
   def discounted_price
     offer_price = offer.amount

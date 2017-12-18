@@ -7,7 +7,7 @@ Feature: Buying an Offer
   Scenario: User can see the checkout page
     Given I am logged in
     And I am in the checkout page
-    Then I should see make payment button
+    Then I should not see the Make Payment button
     Then I should see the apply coupon button
 
   @javascript
@@ -26,8 +26,7 @@ Feature: Buying an Offer
     Then I am in the checkout page
     And I should see a link to Add a Payment Method
     And I fill out the amount I want to pay
-    And I click Make Payment
-    Then I should be redirected to add a Payment Method
+    And I should not see the Make Payment button
 
   @javascript
   Scenario: User tries to pay not the full price for a undeferrable offer
@@ -35,6 +34,7 @@ Feature: Buying an Offer
     And I have a Payment Method
     Then I am in the checkout page seeing an undeferrable offer whose amount is 100
     And I fill out 1 USD as the amount I want to pay
+    And I choose the Payment Method
     And I click Make Payment
     Then I should be redirected to the Offer page
     And I should see a message You cannot make a partial payment towards this offer

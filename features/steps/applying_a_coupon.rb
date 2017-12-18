@@ -6,9 +6,23 @@ class Spinach::Features::ApplyingACoupon < Spinach::FeatureSteps
     fill_in 'coupon', with: 'TEST'
   end
 
+  step 'I fill in a wrong coupon code' do
+    fill_in 'coupon', with: 'WrONG'
+  end
+
+  step 'I fill in my coupon code with daily, downcase' do
+    fill_in 'coupon', with: 'daily'
+  end
+
   step 'I have a valid coupon code' do
     offer = Offer.find(1)
-    offer.coupons << FactoryGirl.create(:coupon, name: 'TEST', code: 'TEST', percent_off: 0.5, offer: offer)
+    offer.coupons << FactoryGirl.create(:coupon, name: 'TEST', code: 'test', percent_off: 0.5, offer: offer)
+    offer.save!
+  end
+
+  step 'I have a valid coupon code for DAILY' do
+    offer = Offer.find(1)
+    offer.coupons << FactoryGirl.create(:coupon, name: 'TEST', code: 'DAILY', percent_off: 0.5, offer: offer)
     offer.save!
   end
 

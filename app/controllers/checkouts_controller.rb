@@ -54,9 +54,9 @@ class CheckoutsController < ApplicationController
   def find_offer_and_coupon
     # raise an exception here when the offer does not exist
     @offer = Offer.find(params[:offer_id])
-    coupon_name = params[:coupon]
-    @coupon = Coupon.find_by(name: coupon_name, offer: @offer)
-    raise Coupon::NotFound, 'This coupon does not exist' if coupon_name && !@coupon
+    coupon_code = params[:coupon]
+    @coupon = Coupon.find_by(code: coupon_code.try(:downcase), offer: @offer)
+    raise Coupon::NotFound, 'This coupon does not exist' if coupon_code && !@coupon
   end
 
   def payment_token
