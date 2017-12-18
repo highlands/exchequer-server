@@ -16,6 +16,10 @@ class Spinach::Features::ApplyingACoupon < Spinach::FeatureSteps
     expect(page).to have_content('Apply Coupon')
   end
 
+  step 'I should not see the apply coupon button' do
+    expect(page).not_to have_content('Apply Coupon')
+  end
+
   step 'I click Apply Coupon' do
     click_on('Apply Coupon')
   end
