@@ -7,7 +7,7 @@ module CommonSteps
 
     step 'I am logged in' do
       # FIXME: Mock the login via SSO
-      visit 'checkouts/new?offer_id=1'
+      visit 'offers/'
       fill_in 'user_username', with: EMAIL
       fill_in 'user_password', with: PASSWORD
       click_on('Sign In')

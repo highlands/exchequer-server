@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount HighlandsAuth::Engine => "/highlands_sso", :as => "auth"
 
   # Offers
-  resources :offers, only: [:show]
+  resources :offers, only: [:index, :show]
   # Invoices
   resources :invoices, only: [:new, :show]
   # PaymentMethod

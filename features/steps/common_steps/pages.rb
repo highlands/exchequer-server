@@ -2,10 +2,11 @@ module CommonSteps
   module Pages
     include Spinach::DSL
 
-    step 'I am in the checkout page' do
-      FactoryGirl.create(:offer, id: 1, due_on: Time.zone.now + 3.days, deferrable: true)
-      visit '/checkouts/new?offer_id=1'
-      expect(page).to have_content('Buy an Offer')
+    step 'I am in the offer page' do
+      offer_name = 'Offer Name'
+      FactoryGirl.create(:offer, name: offer_name, id: 1, due_on: Time.zone.now + 3.days, deferrable: true)
+      visit '/offers/1'
+      expect(page).to have_content(offer_name)
     end
 
     step 'I am in the checkout page seeing an expired offer' do

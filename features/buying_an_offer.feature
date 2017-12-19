@@ -23,7 +23,7 @@ Feature: Buying an Offer
   @javascript
   Scenario: User tries to buy when he does not have a Payment Method
     Given I am logged in
-    Then I am in the checkout page
+    Then I am in the offer page
     And I should see a link to Add a Payment Method
     And I fill out the amount I want to pay
     And I should not see the Make Payment button
