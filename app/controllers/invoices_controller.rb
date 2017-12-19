@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :check_path
+  before_action :authenticate_user!
 
   def new
     offer = Offer.find(params[:offer_id])
