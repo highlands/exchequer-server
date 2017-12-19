@@ -31,13 +31,10 @@ class Invoice < ApplicationRecord
     line_items.where.not(offer_id: nil)
   end
 
-  def self.find_or_create_for(offer, user)
-    # It creates an invoice if there is not
-    # and after this it passes the invoice id
-    # to the payment
-    Invoice.find_or_create_by(offer: offer,
-                              user: user,
-                              due_on: offer.due_on || Time.zone.now)
+  def self.create_with_due_on_for(offer, user)
+    Invoice.create(offer: offer,
+                   user: user,
+                   due_on: offer.due_on || Time.zone.now)
   end
 
   def zero_transactions?

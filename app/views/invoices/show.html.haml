@@ -3,7 +3,7 @@
     %h1 Buy an Offer
     %div
       %h5 Name
-      = @offer.name
+      = link_to @offer.name, offer_path(@offer)
     %div
       %h5 Description
       = @offer.description

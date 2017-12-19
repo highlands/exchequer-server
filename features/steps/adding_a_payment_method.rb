@@ -10,6 +10,10 @@ class Spinach::Features::AddingAPaymentMethod < Spinach::FeatureSteps
     click_on('Make Payment')
   end
 
+  step 'I click on Create Invoice link' do
+    click_on('Create Invoice')
+  end
+
   step 'I should see the payment form' do
     pending 'Check how to see this'
   end

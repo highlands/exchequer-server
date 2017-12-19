@@ -5,7 +5,9 @@ Feature: Applying a Coupon
 
   Scenario: User applies a valid coupon code
     Given I am logged in
-    And I am in the checkout page
+    And I am in the offer page
+    Then I click on Create Invoice link
+    And I am in the invoice page
     And I have a valid coupon code
     Then I should see the apply coupon button
     And I fill in my coupon code
@@ -16,7 +18,9 @@ Feature: Applying a Coupon
 
   Scenario: Coupon codes are case insensitive
     Given I am logged in
-    And I am in the checkout page
+    And I am in the offer page
+    Then I click on Create Invoice link
+    And I am in the invoice page
     And I have a valid coupon code for DAILY
     Then I should see the apply coupon button
     And I fill in my coupon code with daily, downcase
@@ -27,7 +31,8 @@ Feature: Applying a Coupon
 
   Scenario: User should not see Apply Coupon button after applied
     Given I am logged in
-    And I am in the checkout page
+    And I am in the offer page
+    Then I click on Create Invoice link
     And I have a valid coupon code
     Then I should see the apply coupon button
     And I fill in my coupon code
@@ -37,9 +42,10 @@ Feature: Applying a Coupon
     And I should see the coupon applied in my invoice
     And I should not see the apply coupon button
 
-  Scenario: User apply an unexistent coupon code
+  Scenario: User applies an unexistent coupon code
     Given I am logged in
-    And I am in the checkout page
+    And I am in the offer page
+    Then I click on Create Invoice link
     Then I should see the apply coupon button
     And I fill in a wrong coupon code
     And I click Apply Coupon
@@ -48,9 +54,10 @@ Feature: Applying a Coupon
 
   Scenario: User tries to apply a coupon in a Offer with payments
     Given I am logged in
-    And I am in the checkout page
+    And I am in the offer page
+    Then I click on Create Invoice link
     And I have a valid coupon code
-    And I have some payments for this offer
+    And I have some payments for this invoice
     And I can see in the invoice some transactions
     Then I should see the apply coupon button
     And I fill in my coupon code

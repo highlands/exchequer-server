@@ -51,16 +51,20 @@ class Spinach::Features::ApplyingACoupon < Spinach::FeatureSteps
     expect(page).to have_content('This coupon does not exist')
   end
 
-  step 'I have some payments for this offer' do
+  step 'I have some payments for this invoice' do
     user = User.find_by(email: ENV['HIGHLANDS_SSO_EMAIL'])
     invoice = Invoice.find_by(user: user, offer: Offer.find(1))
     invoice.payments << FactoryGirl.create(:payment, amount: 1, invoice: invoice)
     invoice.save!
-    visit '/checkouts/new?offer_id=1'
+    visit "/invoices/#{invoice.id}"
   end
 
   step 'I can see in the invoice some transactions' do
     expect(page).to have_css('.payments')
+  end
+
+  step 'I click on Create Invoice link' do
+    click_on('Create Invoice')
   end
 
   step "I should see a message saying I can't apply a coupon after made a payment" do
