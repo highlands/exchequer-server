@@ -8,6 +8,7 @@
       - else
         = hidden_field_tag :amount, @balance_remaining
       = hidden_field_tag :offer_id, @offer.id
+      = hidden_field_tag :invoice_id, @invoice.id
       -if @payment_methods.count.positive?
         %div
           %ul

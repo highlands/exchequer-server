@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def flash_and_redirect(exception)
     flash[:error] = exception.message
-    redirect_to_checkout_path
+    redirect_to_invoice_path
   end
 
   def authenticate_admin!
@@ -28,5 +28,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_checkout_path
     redirect_to new_checkout_path(offer_id: @offer)
+  end
+
+  def redirect_to_invoice_path
+    redirect_to invoice_path(@invoice)
   end
 end

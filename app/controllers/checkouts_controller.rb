@@ -1,14 +1,6 @@
 class CheckoutsController < ApplicationController
   before_action :check_path
 
-  def new
-    @offer = Offer.find_by(id: params[:offer_id])
-    @invoice = Invoice.find_or_create_for(@offer, current_user)
-    @payment_methods = current_user.available_payment_methods
-
-    @balance_remaining = @invoice.balance_remaining
-  end
-
   def create
     # If user has no payment method yet
     # redirect to payment method
@@ -20,13 +12,11 @@ class CheckoutsController < ApplicationController
     Checkout.pre_validation(@offer, params[:amount])
 
     ActiveRecord::Base.transaction do
-      find_or_create_invoice
-
       LineItem.create_or_find_for_offer(@invoice, @offer)
 
       @coupon ? checkout_with_coupon : checkout_without_coupon
 
-      redirect_to new_checkout_path(offer_id: @offer)
+      redirect_to @invoice
     end
   end
 
@@ -47,11 +37,8 @@ class CheckoutsController < ApplicationController
     flash[:success] = "You've just paid for this offer"
   end
 
-  def find_or_create_invoice
-    @invoice = Invoice.find_or_create_for(@offer, current_user)
-  end
-
   def find_offer_and_coupon
+    @invoice = Invoice.find(params[:invoice_id])
     # raise an exception here when the offer does not exist
     @offer = Offer.find(params[:offer_id])
     coupon_code = params[:coupon]
