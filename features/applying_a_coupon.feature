@@ -37,7 +37,6 @@ Feature: Applying a Coupon
     And I should see the coupon applied in my invoice
     And I should not see the apply coupon button
 
-
   Scenario: User apply an unexistent coupon code
     Given I am logged in
     And I am in the checkout page
