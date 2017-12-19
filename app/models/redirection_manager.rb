@@ -6,7 +6,7 @@ class RedirectionManager
       params_in_session = params_in_session.with_indifferent_access
 
       controller = params_in_session['controller']
-      new_checkout_path(offer_id: params_in_session['offer_id']) if controller == 'checkouts'
+      invoice_path(id: params_in_session['id']) if controller == 'invoices'
     end
   end
 end
