@@ -3,8 +3,13 @@ Rails.application.routes.draw do
 
   # Offers
   resources :offers, only: [:index, :show]
+
   # Invoices
-  resources :invoices, only: [:new, :show]
+  resources :invoices, only: [:new, :show] do
+    # LineItems
+    resources :line_items, only: [:destroy]
+  end
+
   # PaymentMethod
   resources :payment_methods, only: [:new, :create, :destroy]
   post 'payment_methods/choose' => 'payment_methods#choose'

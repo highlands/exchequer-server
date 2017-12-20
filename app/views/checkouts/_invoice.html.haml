@@ -44,6 +44,7 @@
             = li.created_at.to_date
           %td
             = "- #{number_to_currency(li.amount)}"
+            = link_to 'X', invoice_line_item_path(@invoice.id,li.id), method: :delete, id: "delete-coupon-#{li.id}", data: {confirm: 'Are you sure?'}
       %tr
         %td
         %td
