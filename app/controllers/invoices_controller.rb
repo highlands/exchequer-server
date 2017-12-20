@@ -16,6 +16,7 @@ class InvoicesController < ApplicationController
   end
 
   def check_path
+    # FIXME: lets move this to application controll and rename to set_redirect_path
     session[:from] = params
   end
 end

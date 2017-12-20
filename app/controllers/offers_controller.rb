@@ -3,6 +3,7 @@ class OffersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # FIXME: set manager from Application Controller
     @offers = Manager.first.offers
   end
 

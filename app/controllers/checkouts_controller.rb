@@ -2,12 +2,13 @@ class CheckoutsController < ApplicationController
   before_action :check_path
 
   def create
-    # If user has no payment method yet
-    # redirect to payment method
-    # once the payment method is added, go back to buy and have the offer_id as
-    # params
+    # If user has no payment method yet redirect to payment method once the payment method is added,
+    # go back to buy and have the offer_id as params
+    # FIXME: lets move a bunch of this out into a a Checkout service
     find_offer_and_coupon
-    redirect_to(new_payment_method_path) && return unless current_user.payment_method_present? || @coupon
+    unless payment_method_or_coupon
+      redirect_to(new_payment_method_path)
+    end
 
     Checkout.pre_validation(@offer, params[:amount])
 
@@ -22,6 +23,7 @@ class CheckoutsController < ApplicationController
 
   private
 
+  # FIXME: move a bunch of this out to a utility (maybe a service or an interactor)
   def checkout_with_coupon
     Checkout.with_coupon(@invoice, @coupon)
     flash[:success] = "You've just used your coupon"
@@ -44,6 +46,10 @@ class CheckoutsController < ApplicationController
     coupon_code = params[:coupon]
     @coupon = Coupon.find_by(code: coupon_code.try(:downcase), offer: @offer)
     raise Coupon::NotFound, 'This coupon does not exist' if coupon_code && !@coupon
+  end
+
+  def payment_method_or_coupon
+    current_user.payment_method_present? || @coupon
   end
 
   def payment_token
