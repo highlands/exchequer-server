@@ -1,4 +1,4 @@
-class SpreedlyTransaction
+module SpreedlyTransaction
   def self.spreedly_env
     Spreedly::Environment.new(
       Rails.application.secrets.spreedly_key,
@@ -20,7 +20,5 @@ class SpreedlyTransaction
                      payment_method: payment_method,
                      transaction_token: transaction.token)
     end
-  rescue Spreedly::TransactionCreationError => e
-    raise e
   end
 end
