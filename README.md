@@ -19,6 +19,9 @@ in [Ruby on Rails](http://rubyonrails.org/) and backed by
 We have Spreedly and Highlands SSO set up. You need to have the following ENV
 vars.
 
+FIXME: update to encrypted secrets directions, remove encrypted secrets file (move it to highlands
+fork)
+
 ```sh
 export SECRET_KEY_BASE=""
 export SPREEDLY_ENVIRONMENT=""
