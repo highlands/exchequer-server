@@ -5,7 +5,7 @@
   %script{src: "https://core.spreedly.com/iframe/iframe-v1.min.js"}
 = javascript_include_tag 'add_payment_method'
 
-
+-# FIXME: check on this embedded layout. do we need this body tag?
 %body
   %form#payment-form{:method=> :post, :action => "/payment_methods", :onsubmit => "submitPaymentForm(); return false;", :class=> "pure-form"}
     %div.pure-g
@@ -17,30 +17,28 @@
       %input{name: :authenticity_token, type: :hidden, value: form_authenticity_token}
       %input{id: :card_type, name: :card_type, type: :hidden }
       %input{id: :last_four_digits, name: :last_four_digits, type: :hidden }
-
       %div.pure-u-1
         %div.pure-u-1-2
           %fieldset
             %legend Name in the Card
-          %input#full_name{name: :full_name, type: :text, class: 'pure-u-1-2'}
+          %input#full_name.pure-u-1-2{name: :full_name, type: :text}
       %div.pure-u-1
         %div.pure-u-1-2
           %fieldset
             %legend Credit Card Number
-            #spreedly-number{style: "width:250px; height: 35px;", class: 'input-pure-css'}
+            #spreedly-number.input-pure-css{style: "width:250px; height: 35px;"}
       %div.pure-u-1-2
         %fieldset
           %legend Expiration Date
-          %input#month{maxlength: 2, name: :month, type: :text, placeholder: 'MM', class: 'pure-u-1-12'}
+          %input#month.pure-u-1-12{maxlength: 2, name: :month, type: :text, placeholder: 'MM'}
           \/
-          %input#year{maxlength: 2, name: :year, type: :text, placeholder: 'YY', class: 'pure-u-1-12'}
+          %input#year.pure-u-1-12{maxlength: 2, name: :year, type: :text, placeholder: 'YY'}
       %div.pure-u-1
         %div.pure-u-1-2
           %fieldset
             %legend CVV
-            #spreedly-cvv{style: 'width:60px; height:35px;', class: 'input-pure-css'}
-      %input#submit-button{disabled: :disabled, type: :submit, value: 'Add Card', class: 'pure-button'}
-
+            #spreedly-cvv.input-pure-css{style: 'width:60px; height:35px;'}
+      %input#submit-button.pure-button{disabled: :disabled, type: :submit, value: 'Add Card'}
 
 :javascript
   $('#payment-form').submit(function(e) {

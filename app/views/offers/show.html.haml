@@ -1,4 +1,4 @@
-%div{class: "pure-g pure-u-1"}
+%div.pure-g.pure-u-1
   %h1= @offer.name
   %div
     %h5 Description
@@ -6,27 +6,21 @@
   %div
     %h5 Amount
     = number_to_currency(@offer.amount)
-  - if @invoices.count.positive?
-    %h3 Invoices You have for this offer
-    %table{class: "pure-table pure-table-horizontal"}
+  - if @invoices.any?
+    %h3 Invoices
+    %table.pure-table.pure-table-horizontal
       %thead
         %tr
-          %th
-            Invoice ID
-          %th
-            Created At
-          %th
-            Status
+          %th Invoice ID
+          %th Created At
+          %th Status
       %tbody
         - @invoices.each do |invoice|
           %tr
+            %td= link_to invoice.id, invoice_path(invoice)
+            %td= invoice.created_at
             %td
-              = link_to invoice.id, invoice_path(invoice)
-            %td
-              = invoice.created_at
-            %td
-              %b
-                = invoice.status
+              %b= invoice.status
   - else
-    %h3 You don't have any invoice for this Offer
+    %h3 You don't have any invoices for this offer.
   = link_to "Create Invoice", new_invoice_path(offer_id: params[:id])

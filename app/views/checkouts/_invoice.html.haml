@@ -1,84 +1,73 @@
 %div
   %h4= "Invoice Nº #{@invoice.id}"
   %h6= "Status: #{@invoice.status}"
-  %table{class: "pure-table pure-table-horizontal"}
+  %table.pure-table.pure-table-horizontal
     %thead
       %tr
-        %th
-          Item
-        %th
-          Date
-        %th
-          Amount
+        %th Item
+        %th Date
+        %th Amount
     %tbody
-      %tr{class: "pure-table-odd"}
+      %tr.pure-table-odd
         %td
-          %b Offers
+          %strong Offers
         %td
         %td
       - @invoice.line_items_offers.each do |li|
         %tr
-          %td
-            = "#{@invoice.offer.name} - #{li.type}"
-          %td
-            = li.created_at.to_date
-          %td
-            = number_to_currency(li.amount)
+          %td #{@invoice.offer.name} - #{li.type}
+          %td= li.created_at.to_date
+          %td= number_to_currency(li.amount)
       %tr
         %td
         %td
-          %b Subtotal
+          %strong Subtotal
         %td
-          %b
-            = number_to_currency(@invoice.subtotal)
-      %tr{class: "pure-table-odd"}
+          %strong= number_to_currency @invoice.subtotal
+      %tr.pure-table-odd
         %td
-          %b Discounts
+          %strong Discounts
         %td
         %td
       - @invoice.line_items_discounts.each do |li|
         %tr
+          %td #{@invoice.offer.name} - #{li.type}
+          %td= li.created_at.to_date
           %td
-            = "#{@invoice.offer.name} - #{li.type}"
-          %td
-            = li.created_at.to_date
-          %td
-            = "- #{number_to_currency(li.amount)}"
+            \-
+            = number_to_currency li.amount
             = link_to 'X', invoice_line_item_path(@invoice.id,li.id), method: :delete, id: "delete-coupon-#{li.id}", data: {confirm: 'Are you sure?'}
       %tr
         %td
         %td
-          %b Total
+          %strong Total
         %td
-          %b
-            = number_to_currency(@invoice.total)
-      %tr{class: "pure-table-odd"}
+          %strong= number_to_currency @invoice.total
+      %tr.pure-table-odd
         %td
-          %b Payments
+          %strong Payments
         %td
         %td
       - @invoice.payments.each do |payment|
-        %tr{class: 'payments'}
+        =# change this class to payment (singluar)
+        %tr.payments
           %td
             Payment
             %div
-              %small
-                = payment.payment_method.to_s
+              %small= payment.payment_method
+          %td= payment.created_at.to_date
           %td
-            = payment.created_at.to_date
-          %td
-            = "- #{number_to_currency(payment.amount)}"
+            \-
+            = number_to_currency payment.amount
       %tr
         %td
         %td
-          %b Total Payments
+          %strong Total Payments
         %td
-          %b
-            = "- #{number_to_currency(@invoice.balance_paid)}"
+          %strong - #{number_to_currency @invoice.balance_paid}
       %tr
         %td
         %td
-          %b Amount Remaining
+          %strong Amount Remaining
         %td
-          %b
-            = number_to_currency(@invoice.balance_remaining)
+          %strong= number_to_currency @invoice.balance_remaining

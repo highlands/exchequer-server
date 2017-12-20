@@ -1,16 +1,16 @@
+-# FIXME: ensure we are using this
 %h3 Choose your card
-
 
 = link_to "Add a new card", new_payment_method_path
 
 = form_tag(checkouts_path, class: "pure-form") do
   %fieldset
-    %div{class: "pure-u-1-4"}
+    %div.pure-u-1-4
       %h5
         Payment
         = number_field_tag :amount, @amount, {readonly: true, class: "pure-input-1-4"}
         %div
           = select_tag :payment_method_id, options_for_select(@payment_methods.collect{ |pm| [pm, pm.id] })
         = hidden_field_tag :offer_id, @offer.id
-        %button{class: "pure-button", type: "submit"}
+        %button.pure-button{type: "submit"}
           Make Payment
