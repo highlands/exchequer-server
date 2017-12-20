@@ -1,8 +1,10 @@
 class Invoice < ApplicationRecord
+  # An Invoice is a history of transactions towards an offer for a given user
+
   UNPAID = 'Unpaid'.freeze
   PARTIALLY_PAID = 'Partially Paid'.freeze
   PAID = 'Paid'.freeze
-  # An Invoice is a history of transactions towards an offer for a given user
+
   belongs_to :offer
   belongs_to :user
 
@@ -16,7 +18,7 @@ class Invoice < ApplicationRecord
   def status
     return PAID if balance_remaining.zero?
     return PARTIALLY_PAID if balance_remaining < total
-    return UNPAID if balance_remaining == total
+    UNPAID
   end
 
   def applied_coupon?
@@ -24,10 +26,12 @@ class Invoice < ApplicationRecord
   end
 
   def line_items_discounts
+    # FIXME: add a scope to line_items and called discounts and use it intead of this method
     line_items.where.not(coupon_id: nil)
   end
 
   def line_items_offers
+    # FIXME: add a scope to line_items and called offers and use it intead of this method
     line_items.where.not(offer_id: nil)
   end
 
@@ -38,6 +42,7 @@ class Invoice < ApplicationRecord
   end
 
   def zero_transactions?
+    # FIXME: use line_item scopes mentioned above
     payments.count.zero? && line_items.where.not(coupon_id: nil).count.zero?
   end
 
@@ -48,7 +53,8 @@ class Invoice < ApplicationRecord
 
   def subtotal
     # Total not including coupons
-    if line_items.count.positive?
+    if line_items.any?
+      # FIXME: use line_item scopes mentioned above
       line_items.where.not(offer_id: nil).map(&:amount).sum
     else
       offer.amount
@@ -61,7 +67,8 @@ class Invoice < ApplicationRecord
   end
 
   def discounts
-    # TODO: Worry with percent_off discounts
+    # FIXME: Worry with percent_off discounts
+    # FIXME: use line_item scopes mentioned above
     line_items.where.not(coupon_id: nil).map(&:amount).sum
   end
 

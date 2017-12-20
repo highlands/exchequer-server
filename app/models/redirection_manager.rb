@@ -1,5 +1,7 @@
+# FIXME: this should be a module and maybe in an app/services folder
 class RedirectionManager
   class << self
+    # change these methods into def self.foo
     include Rails.application.routes.url_helpers
 
     def path_for(params_in_session)

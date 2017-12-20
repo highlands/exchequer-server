@@ -1,5 +1,8 @@
+# FIXME make this into a service and move into service folder, move the checkout controller logic
+# into it. Maybe consider making this an Active Model (in the models folder) -- but a non AR model.
 class Checkout
   class << self
+    # FIXME: turn these methods into def self.foo
     def pre_validation(offer, amount)
       if Time.zone.now > offer.due_on
         raise Offer::DueOnExpired, 'This offer cannot be paid anymore.'

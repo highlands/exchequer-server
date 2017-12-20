@@ -4,6 +4,7 @@ class PaymentMethodsController < ApplicationController
   def new; end
 
   def choose
+    # FIXME: does this do anything anymore? i think it might could go away with the new workflow.
     redirect_to(new_payment_method_path) && return unless current_user.payment_method_present?
     @amount = params[:amount]
     @offer = Offer.find(params[:offer_id])

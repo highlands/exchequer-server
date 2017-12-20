@@ -1,7 +1,6 @@
+# FIXME: maybe make this a module in services folder?
 class Vault
-  class << self
-    def env
-      Spreedly::Environment.new(Rails.application.secrets.spreedly_key, Rails.application.secrets.spreedly_secret)
-    end
+  def self.env
+    Spreedly::Environment.new(Rails.application.secrets.spreedly_key, Rails.application.secrets.spreedly_secret)
   end
 end

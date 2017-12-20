@@ -1,11 +1,12 @@
 class LineItem < ApplicationRecord
+  # A LineItem is an item with amount associated with an invoice. It can optionally be a coupon.
+
   CouponNotInFullPrice = Class.new(StandardError)
 
-  # A LineItem is an item with amount associated with an invoice.
-  # It can optionally be a coupon
   belongs_to :invoice
   belongs_to :offer, optional: true
   belongs_to :coupon, optional: true
+
   validates :invoice, presence: true
   validates :quantity, presence: true
   validates :amount, presence: true
