@@ -13,6 +13,9 @@ class LineItem < ApplicationRecord
   validate :ensure_non_dual_type
   validate :ensure_single_type
 
+  scope :discounts, -> { where.not(coupon_id: nil) }
+  scope :offers, -> { where.not(offer_id: nil) }
+
   def type
     coupon_id ? Coupon : Offer
   end

@@ -22,17 +22,7 @@ class Invoice < ApplicationRecord
   end
 
   def applied_coupon?
-    line_items_discounts.count.positive?
-  end
-
-  def line_items_discounts
-    # FIXME: add a scope to line_items and called discounts and use it intead of this method
-    line_items.where.not(coupon_id: nil)
-  end
-
-  def line_items_offers
-    # FIXME: add a scope to line_items and called offers and use it intead of this method
-    line_items.where.not(offer_id: nil)
+    line_items.discounts.count.positive?
   end
 
   def self.create_with_due_on_for(offer, user)
@@ -42,8 +32,7 @@ class Invoice < ApplicationRecord
   end
 
   def zero_transactions?
-    # FIXME: use line_item scopes mentioned above
-    payments.count.zero? && line_items.where.not(coupon_id: nil).count.zero?
+    payments.count.zero? && line_items.discounts.count.zero?
   end
 
   def balance_paid
@@ -54,8 +43,7 @@ class Invoice < ApplicationRecord
   def subtotal
     # Total not including coupons
     if line_items.any?
-      # FIXME: use line_item scopes mentioned above
-      line_items.where.not(offer_id: nil).map(&:amount).sum
+      line_items.offers.map(&:amount).sum
     else
       offer.amount
     end
@@ -67,9 +55,7 @@ class Invoice < ApplicationRecord
   end
 
   def discounts
-    # FIXME: Worry with percent_off discounts
-    # FIXME: use line_item scopes mentioned above
-    line_items.where.not(coupon_id: nil).map(&:amount).sum
+    line_items.discounts.map(&:amount).sum
   end
 
   def balance_remaining

@@ -13,7 +13,7 @@
           %strong Offers
         %td
         %td
-      - @invoice.line_items_offers.each do |li|
+      - @invoice.line_items.offers.each do |li|
         %tr
           %td #{@invoice.offer.name} - #{li.type}
           %td= li.created_at.to_date
@@ -29,7 +29,7 @@
           %strong Discounts
         %td
         %td
-      - @invoice.line_items_discounts.each do |li|
+      - @invoice.line_items.discounts.each do |li|
         %tr
           %td #{@invoice.offer.name} - #{li.type}
           %td= li.created_at.to_date
