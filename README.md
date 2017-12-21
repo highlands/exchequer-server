@@ -19,18 +19,25 @@ in [Ruby on Rails](http://rubyonrails.org/) and backed by
 We have Spreedly and Highlands SSO set up. You need to have the following ENV
 vars.
 
-FIXME: update to encrypted secrets directions, remove encrypted secrets file (move it to highlands
-fork)
+We are using [Rails 5.1 Encrypted Secrets.](https://www.engineyard.com/blog/encrypted-rails-secrets-on-rails-5.1).
+
+Here are the necessary secrets to make the app work.
 
 ```sh
-export SECRET_KEY_BASE=""
-export SPREEDLY_ENVIRONMENT=""
-export SPREEDLY_KEY=""
-export SPREEDLY_SECRET=""
-export SSO_KEY=""
-export SSO_SECRET=""
-export HIGHLANDS_AUTH_REDIRECT="http://localhost:3000"
-export HIGHLANDS_AUTH_SUPPORT_EMAIL=""
+SECRET_KEY_BASE=""
+GITHUB_KEY=""
+GITHUB_SECRET=""
+SPREEDLY_ENVIRONMENT=""
+SPREEDLY_KEY=""
+SPREEDLY_SECRET=""
+GATEWAY_TOKEN=""
+SSO_KEY=""
+SSO_SECRET=""
+HIGHLANDS_AUTH_REDIRECT=""
+HIGHLANDS_AUTH_SUPPORT_EMAIL=""
+HIGHLANDS_SSO_EMAIL=""
+HIGHLANDS_SSO_PASSWORD=""
+PAYMENT_METHOD_TEST_TOKEN=""
 ```
 
 
