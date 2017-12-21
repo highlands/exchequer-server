@@ -6,9 +6,7 @@ class CheckoutsController < ApplicationController
     # go back to buy and have the offer_id as params
     # FIXME: lets move a bunch of this out into a a Checkout service
     find_offer_and_coupon
-    unless payment_method_or_coupon
-      redirect_to(new_payment_method_path)
-    end
+    redirect_to(new_payment_method_path) unless payment_method_or_coupon
 
     Checkout.pre_validation(@offer, params[:amount])
 

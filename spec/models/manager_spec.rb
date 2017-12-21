@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Manager, type: :model do
   describe 'fields' do
     it { is_expected.to respond_to(:name) }
+    it { is_expected.to respond_to(:public_token) }
     it { is_expected.to respond_to(:api_keys) }
   end
 
@@ -13,5 +14,6 @@ RSpec.describe Manager, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:public_token) }
   end
 end

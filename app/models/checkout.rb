@@ -1,4 +1,4 @@
-# FIXME make this into a service and move into service folder, move the checkout controller logic
+# FIXME: make this into a service and move into service folder, move the checkout controller logic
 # into it. Maybe consider making this an Active Model (in the models folder) -- but a non AR model.
 class Checkout
   class << self
