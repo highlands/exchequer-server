@@ -26,7 +26,7 @@ resource 'Manager' do
       example 'Showing Current App when authenticated' do
         do_request
         response = JSON.parse(response_body)
-        expect(response.keys).to eq %w[id name created_at updated_at]
+        expect(response.keys).to eq %w[id name created_at updated_at public_token]
         expect(status).to eq(200)
       end
     end
