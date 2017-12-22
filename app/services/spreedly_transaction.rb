@@ -6,11 +6,11 @@ module SpreedlyTransaction
     )
   end
 
-  def self.purchase(invoice, amount, payment_token, payment_method)
+  def self.purchase(invoice, amount, payment_method)
     transaction = spreedly_env
       .purchase_on_gateway(
         Rails.application.secrets.gateway_token,
-        payment_token,
+        payment_method.token,
         amount,
         retain_on_success: true
       )
@@ -19,6 +19,8 @@ module SpreedlyTransaction
                      amount: amount,
                      payment_method: payment_method,
                      transaction_token: transaction.token)
+    else
+      raise Checkout::TransactionError, transaction.message
     end
   end
 end

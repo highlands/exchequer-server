@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # FIXME: lets move these rescues into their proper controllers, or into interactors for checkout
+  # Checkout exceptions
+  rescue_from Checkout::TransactionError, with: :flash_and_redirect
   # Coupon exceptions
   rescue_from Coupon::NotFound, with: :flash_and_redirect
   # Offer exceptions
