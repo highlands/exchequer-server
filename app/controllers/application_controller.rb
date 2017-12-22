@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
   rescue_from Spreedly::TransactionCreationError, with: :flash_and_redirect
 
   before_action :set_manager
-  before_action :set_redirect_path
 
   def flash_and_redirect(exception)
     flash[:error] = exception.message

@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_redirect_path
 
   def index
     # FIXME: set manager from Application Controller
