@@ -3,7 +3,6 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   include CommonSteps::Pages
 
   step 'I should see make payment button' do
-    # FIXME: Check for button css
     expect(page).to have_content('Make Payment')
   end
 
@@ -16,7 +15,6 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
   end
 
   step 'I should see the apply coupon button' do
-    # FIXME: Check for button css
     expect(page).to have_content('Apply Coupon')
   end
 

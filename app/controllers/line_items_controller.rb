@@ -5,8 +5,7 @@ class LineItemsController < ApplicationController
     # We currently don't support deleting offer line items, only coupons, so this is tied to coupons
     # only.
     find_invoice
-    # FIXME: only look at coupons here via the scope we are creating
-    line_item = @invoice.line_items.find(params[:id])
+    line_item = @invoice.line_items.discounts.find(params[:id])
     line_item.destroy
     flash[:success] = 'Coupon removed'
 
