@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   rescue_from Spreedly::TransactionCreationError, with: :flash_and_redirect
 
   before_action :set_manager
+  before_action :set_redirect_path
 
   def flash_and_redirect(exception)
     flash[:error] = exception.message
@@ -41,5 +42,9 @@ class ApplicationController < ActionController::Base
   def set_manager
     # FIXME: implement here? this is set from a parameter, but then we should save it in the session
     # and use that until another manager param comes through. Use token not id.
+  end
+
+  def set_redirect_path
+    session[:from] = params
   end
 end

@@ -1,5 +1,4 @@
 class InvoicesController < ApplicationController
-  before_action :check_path
   before_action :authenticate_user!
 
   def new
@@ -13,10 +12,5 @@ class InvoicesController < ApplicationController
     @offer = @invoice.offer
     @payment_methods = current_user.available_payment_methods
     @balance_remaining = @invoice.balance_remaining
-  end
-
-  def check_path
-    # FIXME: lets move this to application controll and rename to set_redirect_path
-    session[:from] = params
   end
 end

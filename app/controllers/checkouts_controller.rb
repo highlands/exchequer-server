@@ -1,5 +1,5 @@
 class CheckoutsController < ApplicationController
-  before_action :check_path
+  before_action :authenticate_user!
 
   def create
     # If user has no payment method yet redirect to payment method once the payment method is added,
@@ -53,10 +53,5 @@ class CheckoutsController < ApplicationController
   def payment_token
     # TODO: The user should choose the payment method
     current_user.payment_methods.first.token
-  end
-
-  def check_path
-    session[:from] = params
-    authenticate_user!
   end
 end
