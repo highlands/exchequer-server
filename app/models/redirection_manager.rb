@@ -9,5 +9,7 @@ module RedirectionManager
     return url_helpers.invoice_path(id) if controller == 'invoices' && id
 
     return url_helpers.offer_path(id) if controller == 'offers' && id
+
+    return url_helpers.root_path
   end
 end

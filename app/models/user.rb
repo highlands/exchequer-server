@@ -16,10 +16,7 @@ class User < ApplicationRecord
   end
 
   def logout!
-    # FIXME: maybe call update_attributes here instead of doing these explicitly?
-    self.token = nil
-    self.secret = nil
-    self.save
+    update_attributes(token: nil, secret: nil)
   end
 
   private
