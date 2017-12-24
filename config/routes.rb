@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   # PaymentMethod
   resources :payment_methods, only: [:new, :create, :destroy]
-  post 'payment_methods/choose' => 'payment_methods#choose'
 
   # Checkouts
   resources :checkouts
