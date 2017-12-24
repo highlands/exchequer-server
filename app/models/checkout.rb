@@ -6,7 +6,8 @@ class Checkout
   attr_accessor :invoice, :coupon, :amount, :offer, :payment_method_id, :user
 
   validates :offer, presence: true
-  validates :amount, presence: true
+  validates :user, presence: true
+  validates :invoice, presence: true
 
   def initialize(*args)
     super
