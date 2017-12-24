@@ -11,7 +11,7 @@
       %h1 Add Payment Method
       %div.pure-u-1-2
         #errors.pure-u-1.error.hidden
-    %input#payment_method_token{name: :payment_method_token, type: :hidden}
+    %input#token{name: :token, type: :hidden}
     %input{name: :authenticity_token, type: :hidden, value: form_authenticity_token}
     %input{id: :card_type, name: :card_type, type: :hidden }
     %input{id: :last_four_digits, name: :last_four_digits, type: :hidden }
