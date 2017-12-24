@@ -1,4 +1,3 @@
-# FIXME: switch to strong params
 class PaymentMethodsController < ApplicationController
   before_action :authenticate_user!
 
