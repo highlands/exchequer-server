@@ -26,8 +26,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_manager
-    session[:manager_id] = params[:manager_id] if params[:manager_id]
-    @manager = Manager.find(session[:manager_id]) if session[:manager_id]
+    session[:public_token] = params[:public_token] if params[:public_token]
+    @manager = Manager.find_by(public_token: session[:public_token]) if session[:public_token]
   end
 
   def set_redirect_path

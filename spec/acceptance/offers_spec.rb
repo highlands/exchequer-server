@@ -19,7 +19,7 @@ resource 'Offers' do
       example 'Get offers' do
         do_request
         offers = JSON.parse(response_body)
-        expect(offers.first.keys).to eq %w[manager id name description due_on amount deferrable created_at updated_at]
+        expect(offers.first.keys).to eq %w[id name description due_on amount deferrable created_at updated_at manager]
         expect(status).to eq(200)
       end
     end
