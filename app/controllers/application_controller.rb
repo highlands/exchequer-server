@@ -2,21 +2,6 @@ class ApplicationController < ActionController::Base
   include HighlandsAuth::ApplicationHelper
   protect_from_forgery with: :exception
 
-  # FIXME: lets move these rescues into their proper controllers, or into interactors for checkout
-  # Checkout exceptions
-  rescue_from Checkout::TransactionError, with: :flash_and_redirect
-  # Coupon exceptions
-  rescue_from Coupon::NotFound, with: :flash_and_redirect
-  # Offer exceptions
-  rescue_from Offer::DueOnExpired, with: :flash_and_redirect
-  rescue_from Offer::DeferrableNotAllowed, with: :flash_and_redirect
-  # LineItem exceptions
-  rescue_from LineItem::CouponNotInFullPrice, with: :flash_and_redirect
-  # PaymentMethod exceptions
-  rescue_from PaymentMethod::NoPaymentMethod, with: :flash_and_redirect
-  # Spreedly Exceptions
-  rescue_from Spreedly::TransactionCreationError, with: :flash_and_redirect
-
   before_action :set_manager
 
   def flash_and_redirect(exception)
