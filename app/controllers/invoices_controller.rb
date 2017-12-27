@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
-  before_action :check_path
   before_action :authenticate_user!
+  before_action :set_redirect_path
 
   def new
     offer = Offer.find(params[:offer_id])
@@ -13,9 +13,5 @@ class InvoicesController < ApplicationController
     @offer = @invoice.offer
     @payment_methods = current_user.available_payment_methods
     @balance_remaining = @invoice.balance_remaining
-  end
-
-  def check_path
-    session[:from] = params
   end
 end

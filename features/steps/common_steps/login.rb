@@ -6,7 +6,6 @@ module CommonSteps
     PASSWORD = ENV['HIGHLANDS_SSO_PASSWORD']
 
     step 'I am logged in' do
-      # FIXME: Mock the login via SSO
       visit 'offers/'
       fill_in 'user_username', with: EMAIL
       fill_in 'user_password', with: PASSWORD
@@ -14,7 +13,6 @@ module CommonSteps
     end
 
     step 'I am logged in with a Payment Method' do
-      # FIXME: Mock the login via SSO
       visit 'offers/'
       fill_in 'user_username', with: EMAIL
       fill_in 'user_password', with: PASSWORD

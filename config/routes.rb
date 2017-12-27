@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   # PaymentMethod
   resources :payment_methods, only: [:new, :create, :destroy]
-  post 'payment_methods/choose' => 'payment_methods#choose'
 
   # Checkouts
   resources :checkouts
@@ -28,8 +27,6 @@ Rails.application.routes.draw do
       resources :line_items, only: [:show, :index]
       resources :payments, only: [:show, :index]
       resources :users, only: [:show]
-      # PaymentMethod doesn't exist yet, waiting on the vault/spreedly
-      # resources :payment_method, only: [:show, :index]
     end
   end
 

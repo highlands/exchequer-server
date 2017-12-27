@@ -1,4 +1,4 @@
-%div{class: "pure-g pure-u-1"}
+.pure-g.pure-u-1
   - if @offer
     %h1 Buy an Offer
     %div
@@ -12,10 +12,9 @@
       = number_to_currency(@offer.amount)
       - unless @invoice.applied_coupon?
         = render 'checkouts/coupon_form'
-    - if @invoice && (@invoice.payments.count.positive? || @invoice.line_items.count.positive?)
+    - if @invoice && (@invoice.payments.any? || @invoice.line_items.any?)
       = render 'checkouts/invoice'
     - if @invoice.status != Invoice::PAID
       = render 'checkouts/make_payment_form'
   - else
     %h2 There are no offers.
-

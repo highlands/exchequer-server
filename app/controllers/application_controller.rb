@@ -1,17 +1,8 @@
 class ApplicationController < ActionController::Base
   include HighlandsAuth::ApplicationHelper
   protect_from_forgery with: :exception
-  # Coupon exceptions
-  rescue_from Coupon::NotFound, with: :flash_and_redirect
-  # Offer exceptions
-  rescue_from Offer::DueOnExpired, with: :flash_and_redirect
-  rescue_from Offer::DeferrableNotAllowed, with: :flash_and_redirect
-  # LineItem exceptions
-  rescue_from LineItem::CouponNotInFullPrice, with: :flash_and_redirect
-  # PaymentMethod exceptions
-  rescue_from PaymentMethod::NoPaymentMethod, with: :flash_and_redirect
-  # Spreedly Exceptions
-  rescue_from Spreedly::TransactionCreationError, with: :flash_and_redirect
+
+  before_action :set_manager
 
   def flash_and_redirect(exception)
     flash[:error] = exception.message
@@ -32,5 +23,14 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_invoice_path
     redirect_to invoice_path(@invoice)
+  end
+
+  def set_manager
+    session[:public_token] = params[:public_token] if params[:public_token]
+    @manager = Manager.find_by(public_token: session[:public_token]) if session[:public_token]
+  end
+
+  def set_redirect_path
+    session[:from] = params
   end
 end

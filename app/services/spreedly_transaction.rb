@@ -1,4 +1,4 @@
-class SpreedlyTransaction
+module SpreedlyTransaction
   def self.spreedly_env
     Spreedly::Environment.new(
       Rails.application.secrets.spreedly_key,
@@ -6,11 +6,11 @@ class SpreedlyTransaction
     )
   end
 
-  def self.purchase(invoice, amount, payment_token, payment_method)
+  def self.purchase(invoice, amount, payment_method)
     transaction = spreedly_env
       .purchase_on_gateway(
         Rails.application.secrets.gateway_token,
-        payment_token,
+        payment_method.token,
         amount,
         retain_on_success: true
       )
@@ -19,8 +19,8 @@ class SpreedlyTransaction
                      amount: amount,
                      payment_method: payment_method,
                      transaction_token: transaction.token)
+    else
+      raise Checkout::TransactionError, transaction.message
     end
-  rescue Spreedly::TransactionCreationError => e
-    raise e
   end
 end

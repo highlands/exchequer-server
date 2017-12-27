@@ -7,7 +7,7 @@ class Spinach::Features::SeeingAnOffer < Spinach::FeatureSteps
   end
 
   step 'I should see I dont have any invoice yet' do
-    expect(page).to have_content("You don't have any invoice for this Offer")
+    expect(page).to have_content("You don't have any invoices for this offer")
   end
 
   step 'I click on Create Invoice link' do

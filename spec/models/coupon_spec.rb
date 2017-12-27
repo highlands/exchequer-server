@@ -21,7 +21,7 @@ RSpec.describe Coupon, type: :model do
         FactoryGirl.build(:coupon, amount_off: 10)
       end
 
-      it 'should only have a single discount' do
+      it 'only has a single discount' do
         expect(coupon).to be_valid
         expect(amount_coupon).to be_valid
         expect(double_coupon).not_to be_valid

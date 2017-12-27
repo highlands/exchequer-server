@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe SpreedlyTransaction do
   describe '.purchase' do
+    let(:payment_method) { double('Payment Method', token: 'token') }
+
     context 'when transaction succeeds' do
       let(:invoice) { double('Invoice') }
       let(:transaction) { double('Transaction') }
-      let(:payment_method) { double('Payment Method') }
 
       before do
         allow(SpreedlyTransaction)
@@ -18,14 +19,13 @@ RSpec.describe SpreedlyTransaction do
 
       it 'creates a payment' do
         expect(Payment).to receive(:create).once
-        SpreedlyTransaction.purchase(invoice, 100, 'token', payment_method)
+        SpreedlyTransaction.purchase(invoice, 100, payment_method)
       end
     end
 
     context 'when transaction does not succeed' do
       let(:invoice) { double('Invoice') }
-      let(:transaction) { double('Transaction') }
-      let(:payment_method) { double('Payment Method') }
+      let(:transaction) { double('Transaction', message: 'Error Message') }
 
       before do
         allow(SpreedlyTransaction)
@@ -36,14 +36,10 @@ RSpec.describe SpreedlyTransaction do
         allow(transaction).to receive(:token).and_return('token')
       end
 
-      it 'creates a payment' do
+      it 'raises a Transaction Error exception and it does not create a payment' do
         expect(Payment).not_to receive(:create)
-        SpreedlyTransaction.purchase(invoice, 100, 'token', payment_method)
+        expect { SpreedlyTransaction.purchase(invoice, 100, payment_method) }.to raise_error(Checkout::TransactionError, /Error Message/)
       end
     end
-  end
-
-  context 'when transaction raises an exception' do
-    pending 'test when transaction raises an exception'
   end
 end

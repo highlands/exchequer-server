@@ -1,8 +1,10 @@
 class Invoice < ApplicationRecord
+  # An Invoice is a history of transactions towards an offer for a given user
+
   UNPAID = 'Unpaid'.freeze
   PARTIALLY_PAID = 'Partially Paid'.freeze
   PAID = 'Paid'.freeze
-  # An Invoice is a history of transactions towards an offer for a given user
+
   belongs_to :offer
   belongs_to :user
 
@@ -16,19 +18,11 @@ class Invoice < ApplicationRecord
   def status
     return PAID if balance_remaining.zero?
     return PARTIALLY_PAID if balance_remaining < total
-    return UNPAID if balance_remaining == total
+    UNPAID
   end
 
   def applied_coupon?
-    line_items_discounts.count.positive?
-  end
-
-  def line_items_discounts
-    line_items.where.not(coupon_id: nil)
-  end
-
-  def line_items_offers
-    line_items.where.not(offer_id: nil)
+    line_items.discounts.count.positive?
   end
 
   def self.create_with_due_on_for(offer, user)
@@ -38,7 +32,7 @@ class Invoice < ApplicationRecord
   end
 
   def zero_transactions?
-    payments.count.zero? && line_items.where.not(coupon_id: nil).count.zero?
+    payments.count.zero? && line_items.discounts.count.zero?
   end
 
   def balance_paid
@@ -48,8 +42,8 @@ class Invoice < ApplicationRecord
 
   def subtotal
     # Total not including coupons
-    if line_items.count.positive?
-      line_items.where.not(offer_id: nil).map(&:amount).sum
+    if line_items.any?
+      line_items.offers.map(&:amount).sum
     else
       offer.amount
     end
@@ -61,8 +55,7 @@ class Invoice < ApplicationRecord
   end
 
   def discounts
-    # TODO: Worry with percent_off discounts
-    line_items.where.not(coupon_id: nil).map(&:amount).sum
+    line_items.discounts.map(&:amount).sum
   end
 
   def balance_remaining

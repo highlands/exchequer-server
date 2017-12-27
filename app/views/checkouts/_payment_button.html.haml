@@ -1,3 +1,3 @@
 #make-payment-button
-  %button{class: "pure-button", type: "submit"}
+  %button.pure-button{type: "submit"}
     = @offer.deferrable? ? 'Make Payment' : 'Pay full amount'

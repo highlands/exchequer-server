@@ -1,5 +1,5 @@
 ActiveAdmin.register Manager do
   permit_params do
-    [:name]
+    %i[name public_token]
   end
 end
