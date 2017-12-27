@@ -26,8 +26,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_manager
-    # FIXME: implement here? this is set from a parameter, but then we should save it in the session
-    # and use that until another manager param comes through. Use token not id.
+    session[:manager_id] = params[:manager_id] if params[:manager_id]
+    @manager = Manager.find(session[:manager_id]) if session[:manager_id]
   end
 
   def set_redirect_path

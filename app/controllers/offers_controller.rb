@@ -1,10 +1,15 @@
 class OffersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_redirect_path
+  before_action :set_redirect_path, only: [:show]
+
+  rescue_from Manager::NotInSession, with: :flash_and_redirect
 
   def index
-    # FIXME: set manager from Application Controller
-    @offers = Manager.first.offers
+    if @manager
+      @offers = @manager.offers
+    else
+      raise Manager::NotInSession, 'Please, specify the manager'
+    end
   end
 
   def show
