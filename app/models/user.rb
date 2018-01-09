@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # A user connects via SSO. It has payment methods, invoices and offers.
+
   has_many :payment_methods, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many :offers, through: :invoices

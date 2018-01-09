@@ -1,4 +1,5 @@
 class PaymentMethod < ApplicationRecord
+  # A Payment Method is the way the User can make payments towards an offer
   NoPaymentMethod = Class.new(StandardError)
 
   acts_as_paranoid without_default_scope: true
