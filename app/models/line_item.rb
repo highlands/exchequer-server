@@ -1,7 +1,7 @@
 class LineItem < ApplicationRecord
   # A LineItem is an item with amount associated with an invoice. It can optionally be a coupon.
 
-  CouponNotInFullPrice = Class.new(StandardError)
+  CouponOnlyValidBeforePayment = Class.new(StandardError)
 
   belongs_to :invoice
   belongs_to :offer, optional: true
@@ -36,7 +36,7 @@ class LineItem < ApplicationRecord
                                  quantity: 1,
                                  amount: coupon.discounted_price)
     else
-      raise CouponNotInFullPrice, "You can't apply a coupon after you've made a payment"
+      raise CouponOnlyValidBeforePayment, "You can't apply a coupon after you've made a payment"
     end
   end
 

@@ -9,7 +9,7 @@ class CheckoutsController < ApplicationController
   rescue_from Offer::DueOnExpired, with: :flash_and_redirect
   rescue_from Offer::DeferrableNotAllowed, with: :flash_and_redirect
   # LineItem exceptions
-  rescue_from LineItem::CouponNotInFullPrice, with: :flash_and_redirect
+  rescue_from LineItem::CouponOnlyValidBeforePayment, with: :flash_and_redirect
   # PaymentMethod exceptions
   rescue_from PaymentMethod::NoPaymentMethod, with: :flash_and_redirect
   # Spreedly Exceptions
