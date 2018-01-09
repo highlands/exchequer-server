@@ -18,7 +18,7 @@ module CommonSteps
       fill_in 'user_password', with: PASSWORD
       click_on('Sign In')
       user = User.find_by(email: ENV['HIGHLANDS_SSO_EMAIL'])
-      user.payment_methods << FactoryGirl.create(:payment_method, token: ENV['PAYMENT_METHOD_TEST_TOKEN'], user: user)
+      user.payment_methods << FactoryGirl.create(:payment_method, token: Rails.application.secrets.payment_method_test_token, user: user)
       user.save!
     end
   end
