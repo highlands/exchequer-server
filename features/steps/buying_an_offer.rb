@@ -81,7 +81,7 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
 
   step 'I have a Payment Method' do
     user = User.find_by(email: ENV['HIGHLANDS_SSO_EMAIL'])
-    user.payment_methods << FactoryGirl.create(:payment_method, token: ENV['PAYMENT_METHOD_TEST_TOKEN'], user: user)
+    user.payment_methods << FactoryGirl.create(:payment_method, token: Rails.application.secrets.payment_method_test_token, user: user)
     user.save!
   end
 end
