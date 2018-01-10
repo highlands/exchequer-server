@@ -9,6 +9,7 @@ in [Ruby on Rails](http://rubyonrails.org/) and backed by
 
 ### Setup
 
+* $ first set RAILS_MASTER_KEY in your environment
 * $ bundle install --deployment --path vendor/bundle
 * $ bundle exec rake db:setup
 * $ bundle exec rake db:test:prepare
@@ -16,38 +17,27 @@ in [Ruby on Rails](http://rubyonrails.org/) and backed by
 
 #### Environment Variables
 
-We have Spreedly and Highlands SSO set up. You need to have the following ENV
-vars.
-
-We are using [Rails 5.1 Encrypted Secrets.](https://www.engineyard.com/blog/encrypted-rails-secrets-on-rails-5.1).
-
-Here are the necessary secrets to make the app work.
+To run this project, you'll need a handful of environment variables for the Highlands Auth gem.
 
 ```sh
-SECRET_KEY_BASE=""
-GITHUB_KEY=""
-GITHUB_SECRET=""
-SPREEDLY_ENVIRONMENT=""
-SPREEDLY_KEY=""
-SPREEDLY_SECRET=""
-GATEWAY_TOKEN=""
 SSO_KEY=""
 SSO_SECRET=""
 HIGHLANDS_AUTH_REDIRECT=""
 HIGHLANDS_AUTH_SUPPORT_EMAIL=""
 HIGHLANDS_SSO_EMAIL=""
 HIGHLANDS_SSO_PASSWORD=""
-PAYMENT_METHOD_TEST_TOKEN=""
 ```
 
+Internally to this project we solely use [Rails 5.1 Encrypted Secrets.](https://www.engineyard.com/blog/encrypted-rails-secrets-on-rails-5.1).
 
 ### Tests
 
-We use Rubocop for linting, rspec for unit tests, and spinach for integration
-tests. You can run all three simply by running `rake` or indivdually with the
-following commands:
+We use Rubocop for Ruby linting, stylelint for CSS linting, rspec for unit tests, and spinach for
+integration tests. You can run all four simply by running `rake` or indivdually with the following
+commands:
 
 * $ bundle exec rubocop
+* $ bundle exec stylelint
 * $ bundle exec rspec
 * $ bundle exec spinach
 
@@ -62,5 +52,4 @@ rake docs:generate
 ```
 And it will be saved in: `doc/api/index.{html,json}`.
 
-We are using [apitome](https://github.com/jejacks0n/apitome) to visualize our
-docs.
+We are using [apitome](https://github.com/jejacks0n/apitome) to visualize our docs.
