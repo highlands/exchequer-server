@@ -63,8 +63,8 @@ class Spinach::Features::ApplyingACoupon < Spinach::FeatureSteps
     expect(page).to have_css('.payments')
   end
 
-  step 'I click on Create Invoice link' do
-    click_on('Create Invoice')
+  step 'I click on the Purchase link' do
+    click_on('Purchase')
   end
 
   step "I should see a message saying I can't apply a coupon after made a payment" do

@@ -2,19 +2,19 @@ class Spinach::Features::AddingAPaymentMethod < Spinach::FeatureSteps
   include CommonSteps::Login
   include CommonSteps::Pages
 
-  step 'I fill out the amount I want to pay' do
-    pending 'step not implemented'
-  end
-
-  step 'I click Make Payment' do
-    click_on('Make Payment')
-  end
-
-  step 'I click on Create Invoice link' do
-    click_on('Create Invoice')
+  step 'I click on Purchase link' do
+    click_on('Purchase')
   end
 
   step 'I should see the payment form' do
-    pending 'Check how to see this'
+    page.has_css?('form.payment-form')
+    expect(page).to have_content('Name on Card')
+    expect(page).to have_content('Card Number')
+    expect(page).to have_content('Expiration Date')
+    expect(page).to have_content('CVV')
+  end
+
+  step 'I click Add a Payment Method' do
+    click_on('Add a Payment Method')
   end
 end

@@ -1,14 +1,13 @@
 Feature: Adding a Payment Method
-  In order to buy an Offer
-  As a Logged User
-  I want to buy and add a Payment Method
+  In order to buy an offer
+  As a logged in user
+  I want to add my payment details
 
-  Scenario: User buys an offer when He doesn't have a Payment Method
+  Scenario: User without a Payment Method attempts to buy an offer
     Given I am logged in
-    And I am in the offer page
-    Then I click on Create Invoice link
-    And I am in the invoice page
-    Then I fill out the amount I want to pay
-    And I click Make Payment
+    And I am on an offer page
+    And I click on Purchase link
+    And I am on the invoice page
+    When I click Add a Payment Method
     Then I should be redirected to add a Payment Method
-    Then I should see the payment form
+    And I should see the payment form

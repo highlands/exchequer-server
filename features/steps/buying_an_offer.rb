@@ -30,8 +30,8 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     click_on('Make Payment')
   end
 
-  step 'I click on Create Invoice link' do
-    click_on('Create Invoice')
+  step 'I click on Purchase link' do
+    click_on('Purchase')
   end
 
   step 'I click Pay full amount' do
