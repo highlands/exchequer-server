@@ -1,6 +1,7 @@
 .pure-g.pure-u-1
   - if @offer
-    %h1 Buy an Offer
+    %h1 Invoice: #{@invoice.id}
+    %h6 Status: #{@invoice.status}
     %div
       %h5 Name
       = link_to @offer.name, offer_path(@offer)
