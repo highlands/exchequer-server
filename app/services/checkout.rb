@@ -1,4 +1,7 @@
 class Checkout
+  # Checkout is a non AR model that acts as a service in creating a payment flow. It requires an
+  # offer, user, and invoice.
+
   TransactionError = Class.new(StandardError)
   include ActiveModel::Model
   include ActiveModel::Validations
