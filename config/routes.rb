@@ -24,11 +24,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'app/me', to: 'app#me'
       resources :offers, only: [:create, :show, :index, :update]
-      resources :coupons, only: [:show, :index]
-      resources :invoices, only: [:show, :index]
-      resources :line_items, only: [:show, :index]
-      resources :payments, only: [:show, :index]
-      resources :users, only: [:show]
     end
   end
 
