@@ -14,6 +14,12 @@ RSpec.describe Manager, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_presence_of(:public_token) }
+  end
+
+  describe 'callbacks' do
+    it 'has a public_token after creation' do
+      manager = FactoryGirl.create(:manager)
+      expect(manager.public_token).to_not be_nil
+    end
   end
 end

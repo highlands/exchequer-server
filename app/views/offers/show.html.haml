@@ -22,5 +22,5 @@
             %td
               %b= invoice.status
   - else
-    %h3 You don't have any invoices for this offer.
-  = link_to "Create Invoice", new_invoice_path(offer_id: params[:id])
+    %h3 You haven't purchased this offer.
+  = link_to 'Purchase', new_invoice_path(offer_id: params[:id])

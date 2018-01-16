@@ -2,19 +2,19 @@ class Spinach::Features::SeeingAnOffer < Spinach::FeatureSteps
   include CommonSteps::Login
   include CommonSteps::Pages
 
-  step 'I should see the Create Invoice link' do
-    expect(page).to have_content('Create Invoice')
+  step 'I should see the Purchase link' do
+    expect(page).to have_content('Purchase')
   end
 
-  step 'I should see I dont have any invoice yet' do
-    expect(page).to have_content("You don't have any invoices for this offer")
+  step 'I should see I dont have an invoice yet' do
+    expect(page).to have_content("You haven't purchased this offer.")
   end
 
-  step 'I click on Create Invoice link' do
-    click_on('Create Invoice')
+  step 'I click on Purchase link' do
+    click_on('Purchase')
   end
 
-  step 'I should be redirected to' do
+  step 'I should be redirected to my invoices' do
     expect(page.current_path).to include('invoices')
   end
 end

@@ -22,21 +22,20 @@
 @import './components/*';
 @import './trumps/*';
 
-
 .pure-g {
   margin: 1rem;
 }
 
 .input-pure-css {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 3px #ddd;
+  border: .0625rem solid #ccc;
+  border-radius: .25rem;
+  box-shadow: inset 0 .0625rem .1875rem #ddd;
   vertical-align: middle;
 }
 
 .error {
   background-color: #ffbaba;
-  border-radius: 4px;
+  border-radius: .25rem;
   color: #d8000c;
   padding: 1rem;
 }
@@ -47,12 +46,12 @@
 
 /* Hide HTML5 Up and Down arrows for input number */
 
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-input[type='number'] {
-  -moz-appearance: textfield;
 }
