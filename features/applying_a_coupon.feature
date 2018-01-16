@@ -12,7 +12,7 @@ Feature: Applying a Coupon
     Then I should see the apply coupon button
     And I fill in my coupon code
     And I click Apply Coupon
-    Then I should be redirected to the Offer page
+    Then I should be redirected to the Invoice page
     And I should see a message saying my coupon was applied
     And I should see the coupon applied in my invoice
 
@@ -25,7 +25,7 @@ Feature: Applying a Coupon
     Then I should see the apply coupon button
     And I fill in my coupon code with daily, downcase
     And I click Apply Coupon
-    Then I should be redirected to the Offer page
+    Then I should be redirected to the Invoice page
     And I should see a message saying my coupon was applied
     And I should see the coupon applied in my invoice
 
@@ -37,7 +37,7 @@ Feature: Applying a Coupon
     Then I should see the apply coupon button
     And I fill in my coupon code
     And I click Apply Coupon
-    Then I should be redirected to the Offer page
+    Then I should be redirected to the Invoice page
     And I should see a message saying my coupon was applied
     And I should see the coupon applied in my invoice
     And I should not see the apply coupon button
@@ -49,7 +49,7 @@ Feature: Applying a Coupon
     Then I should see the apply coupon button
     And I fill in a wrong coupon code
     And I click Apply Coupon
-    Then I should be redirected to the Offer page
+    Then I should be redirected to the Invoice page
     And I should see a message saying my coupon does not exist
 
   Scenario: User tries to apply a coupon in a Offer with payments
@@ -62,5 +62,5 @@ Feature: Applying a Coupon
     Then I should see the apply coupon button
     And I fill in my coupon code
     And I click Apply Coupon
-    Then I should be redirected to the Offer page
+    Then I should be redirected to the Invoice page
     And I should see a message saying I can't apply a coupon after made a payment

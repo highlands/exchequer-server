@@ -21,7 +21,7 @@ Feature: Buying an Offer
     And I fill out the amount I want to pay
     And I choose the Payment Method
     And I click Make Payment
-    And I should be redirected to the Offer page
+    And I should be redirected to the Invoice page
     And I should see a message I just paid for this offer
 
   @javascript
@@ -43,7 +43,7 @@ Feature: Buying an Offer
     Then I am on the invoice page
     And I choose the Payment Method
     And I click Pay full amount
-    And I should be redirected to the Offer page
+    And I should be redirected to the Invoice page
     And I should see a message I just paid for this offer
 
   @javascript

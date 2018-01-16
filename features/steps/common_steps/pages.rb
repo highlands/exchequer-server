@@ -30,8 +30,7 @@ module CommonSteps
       expect(page).to have_content('Add Payment Method')
     end
 
-    step 'I should be redirected to the Offer page' do
-      # FIXME: I don't think this is correct!
+    step 'I should be redirected to the Invoice page' do
       expect(page).to have_content('Invoice: ')
     end
   end
