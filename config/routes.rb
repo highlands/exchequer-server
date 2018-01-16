@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   # Checkouts
   resources :checkouts
 
+  resources :visitor, only: [:index]
+
   ActiveAdmin.routes(self)
   root to: "visitor#index"
   namespace :api do
