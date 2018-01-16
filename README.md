@@ -14,6 +14,19 @@ in [Ruby on Rails](http://rubyonrails.org/) and backed by
 * $ bundle exec rake db:setup
 * $ bundle exec rake db:test:prepare
 
+Then to setup your local environment:
+
+* sign in via HighlandsAuth by going to http://localhost:3000/admin
+* You'll get redirected to the visitor index, but your local user will have been created.
+* in console, run `User.last.update_attribute(:admin, true)`
+* Now you can visit the admin at: http://localhost:3000/admin
+
+To create a stack of local instances to work on
+
+* create a manager for the application at http://localhost:3000/admin/managers/new
+* create an API key for that manager at http://localhost:3000/admin/api_keys/new
+* create an offer under that manager at http://localhost:3000/admin/offers/new
+* visit your offer at http://localhost:3000/offers/1
 
 #### Environment Variables
 
