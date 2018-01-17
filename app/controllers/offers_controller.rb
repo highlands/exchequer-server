@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_redirect_path, only: [:show]
+  before_action :authenticate_user!
 
   rescue_from Manager::NotInSession, with: :flash_and_redirect
 

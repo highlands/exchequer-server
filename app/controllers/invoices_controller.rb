@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_redirect_path
+  before_action :authenticate_user!
 
   def new
     offer = Offer.find(params[:offer_id])
