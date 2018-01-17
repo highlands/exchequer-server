@@ -41,11 +41,12 @@
           %strong Total
         %td
           %strong= number_to_currency @invoice.total
-      %tr.pure-table-odd
-        %td
-          %strong Payments
-        %td
-        %td
+      - unless @invoice.payments.count.zero?
+        %tr.pure-table-odd
+          %td
+            %strong Payments
+          %td
+          %td
       - @invoice.payments.each do |payment|
         =# change this class to payment (singluar)
         %tr.payments
@@ -57,12 +58,13 @@
           %td
             \-
             = number_to_currency payment.amount
-      %tr
-        %td
-        %td
-          %strong Total Payments
-        %td
-          %strong - #{number_to_currency @invoice.balance_paid}
+      - unless @invoice.payments.count.zero?
+        %tr
+          %td
+          %td
+            %strong Total Payments
+          %td
+            %strong - #{number_to_currency @invoice.balance_paid}
       %tr
         %td
         %td
