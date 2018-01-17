@@ -11,7 +11,7 @@
     %div
       %h5 Amount
       = number_to_currency(@offer.amount)
-      - unless @invoice.applied_coupon?
+      - unless @invoice.applied_coupon? || @invoice.status == Invoice::PAID
         = render 'checkouts/coupon_form'
     - if @invoice && (@invoice.payments.any? || @invoice.line_items.any?)
       = render 'checkouts/invoice'

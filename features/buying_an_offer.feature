@@ -47,6 +47,19 @@ Feature: Buying an Offer
     And I should see a message I just paid for this offer
 
   @javascript
+  Scenario: After a full payment, I dont see the apply coupon button
+    Given I am logged in
+    And I have a Payment Method
+    And I am on an offer page from an undeferrable offer
+    When I click on Purchase link
+    Then I am on the invoice page
+    And I choose the Payment Method
+    And I click Pay full amount
+    And I should be redirected to the Invoice page
+    And I should see a message I just paid for this offer
+    And I should not see the apply coupon button
+
+  @javascript
   Scenario: User can only pay the full amount torwards a not deferrable offer
     Given I am logged in
     And I have a Payment Method

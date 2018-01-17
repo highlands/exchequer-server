@@ -18,6 +18,10 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     expect(page).to have_content('Apply Coupon')
   end
 
+  step 'I should not see the apply coupon button' do
+    expect(page).not_to have_content('Apply Coupon')
+  end
+
   step 'I fill out the amount I want to pay' do
     fill_in 'amount', with: 100
   end
