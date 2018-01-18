@@ -31,6 +31,9 @@ $(document).ready(function() {
   Spreedly.on("ready", function() {
     var submitButton = document.getElementById("submit-button");
     submitButton.disabled = false;
+
+    Spreedly.setStyle('number', "width:100%;  height:100%; font-size: 1rem; text-align: left; margin: .4rem .5rem;");
+    Spreedly.setStyle('cvv', "width:100%;  height:100%; font-size: 1rem; text-align: left; margin: .4rem .5rem;");
   });
 
   Spreedly.on("errors", function(errors) {
