@@ -1,3 +1,11 @@
 .pure-g
   .pure-u-1
     %h1 Exchequer
+    - if Rails.env.development?
+      %h3= link_to 'Admin Console', '/admin'
+      - Manager.all.each do |manager|
+        %h3= link_to manager.name, offers_path(public_token: manager.public_token)
+        - if manager.offers.any?
+          %ul
+            - manager.offers.each do |offer|
+              %li= link_to offer.name, offer
