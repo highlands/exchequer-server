@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
 
   def flash_and_redirect(exception)
     flash[:error] = exception.message
-    redirect_to_invoice_path
+    if @invoice
+      redirect_to_invoice_path
+    else
+      redirect_to root_path
+    end
   end
 
   def authenticate_admin!
