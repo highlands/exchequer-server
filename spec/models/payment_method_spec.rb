@@ -16,4 +16,16 @@ RSpec.describe PaymentMethod, type: :model do
   describe 'relations' do
     it { is_expected.to belong_to(:user) }
   end
+
+  describe '#display_card_type' do
+    context 'when the card type is Visa' do
+      let(:payment_method) { FactoryGirl.create(:payment_method, card_type: 'visa') }
+      it { expect(payment_method.display_card_type).to eq 'Visa' }
+    end
+
+    context 'when the card type is unmatched' do
+      let(:payment_method) { FactoryGirl.create(:payment_method, card_type: 'unmatched') }
+      it { expect(payment_method.display_card_type).to eq 'Other' }
+    end
+  end
 end
