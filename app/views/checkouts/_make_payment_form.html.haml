@@ -11,7 +11,7 @@
       -if @payment_methods.any?
         %div
           %ul
-            = collection_radio_buttons(nil, :payment_method_id, @payment_methods, :id, :to_s, required: :required) do |button|
+            = collection_radio_buttons(nil, :payment_method_id, @payment_methods, :id, :to_s, required: :required, checked: @payment_methods.first.id) do |button|
               %li
                 = button.label { button.radio_button(required: 'required') + " #{button.text}" }
                 = link_to 'X', payment_method_path(button.value), method: :delete, id: "delete-payment-method-#{button.value}", data: {confirm: 'Are you sure?'}
