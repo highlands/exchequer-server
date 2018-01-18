@@ -1,4 +1,4 @@
-# rubocop:disable all
+# rubocop:disable Rails/Output
 puts 'Creating a Manager'
 manager = Manager.create!(name: 'Generated Manager')
 
