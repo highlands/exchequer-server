@@ -4,15 +4,15 @@ module CommonSteps
 
     step 'I am on an offer page' do
       offer_name = 'Offer Name'
-      FactoryGirl.create(:offer, name: offer_name, id: 1, due_on: Time.zone.now + 3.days, deferrable: true)
-      visit '/offers/1'
+      offer = FactoryGirl.create(:offer, name: offer_name, id: 1, due_on: Time.zone.now + 3.days, deferrable: true)
+      visit "/offers/1?public_token=#{offer.manager.public_token}"
       expect(page).to have_content(offer_name)
     end
 
     step 'I am on an offer page from an undeferrable offer' do
       offer_name = 'Offer Name'
       offer = FactoryGirl.create(:offer, name: offer_name, id: 1, due_on: Time.zone.now + 3.days, deferrable: false)
-      visit "/offers/#{offer.id}"
+      visit "/offers/#{offer.id}?public_token=#{offer.manager.public_token}"
       expect(page).to have_content(offer_name)
     end
 
