@@ -13,7 +13,7 @@ class OffersController < ApplicationController
   end
 
   def show
-    @offer = Offer.find(params[:id])
+    @offer = @manager.offers.find(params[:id])
     @invoices = Invoice.where(offer: @offer, user: current_user)
   end
 end
