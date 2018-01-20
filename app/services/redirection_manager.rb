@@ -1,4 +1,7 @@
 module RedirectionManager
+  # Module that handles redirect for some pages in the
+  # application. We check what is inside the session
+  # and then we redirect to the correct place
   def self.path_for(params_in_session)
     url_helpers = Rails.application.routes.url_helpers
     return url_helpers.root_path unless params_in_session
