@@ -5,7 +5,8 @@
     = @offer.description
   %div
     %h5 Amount
-    = number_to_currency(@offer.amount)
+    - if @offer.amount?
+      = number_to_currency(@offer.amount)
   - if @invoices.any?
     %h3 Invoices
     %table.pure-table.pure-table-horizontal

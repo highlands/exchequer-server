@@ -9,13 +9,14 @@
       %h5 Description
       = @offer.description
     %div
-      %h5 Amount
-      = number_to_currency(@offer.amount)
+      - if @offer.amount?
+        %h5 Amount
+        = number_to_currency(@offer.amount)
       - unless @invoice.applied_coupon? || @invoice.status == Invoice::PAID
         = render 'checkouts/coupon_form'
     - if @invoice && (@invoice.payments.any? || @invoice.line_items.any?)
       = render 'checkouts/invoice'
-    - if @invoice.status != Invoice::PAID
+    - if @invoice.status != Invoice::PAID || !@offer.amount?
       = render 'checkouts/make_payment_form'
   - else
     %h2 There are no offers.

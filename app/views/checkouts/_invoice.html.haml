@@ -6,41 +6,44 @@
         %th Date
         %th Amount
     %tbody
-      %tr.pure-table-odd
-        %td
-          %strong Offers
-        %td
-        %td
-      - @invoice.line_items.offers.each do |li|
-        %tr
-          %td #{@invoice.offer.name} - #{li.type}
-          %td= li.created_at.to_date
-          %td= number_to_currency(li.amount)
-      %tr
-        %td
-        %td
-          %strong Subtotal
-        %td
-          %strong= number_to_currency @invoice.subtotal
-      %tr.pure-table-odd
-        %td
-          %strong Discounts
-        %td
-        %td
-      - @invoice.line_items.discounts.each do |li|
-        %tr
-          %td #{@invoice.offer.name} - #{li.type}
-          %td= li.created_at.to_date
+      - if @offer.amount?
+        %tr.pure-table-odd
           %td
-            \-
-            = number_to_currency li.amount
-            = link_to 'X', invoice_line_item_path(@invoice.id,li.id), method: :delete, id: "delete-coupon-#{li.id}", data: {confirm: 'Are you sure?'}
-      %tr
-        %td
-        %td
-          %strong Total
-        %td
-          %strong= number_to_currency @invoice.total
+            %strong Offers
+          %td
+          %td
+        - @invoice.line_items.offers.each do |li|
+          %tr
+            %td #{@invoice.offer.name} - #{li.type}
+            %td= li.created_at.to_date
+            %td= number_to_currency(li.amount)
+        %tr
+          %td
+          %td
+            %strong Subtotal
+          %td
+            %strong= number_to_currency @invoice.subtotal
+      - if @offer.amount?
+        %tr.pure-table-odd
+          %td
+            %strong Discounts
+          %td
+          %td
+        - @invoice.line_items.discounts.each do |li|
+          %tr
+            %td #{@invoice.offer.name} - #{li.type}
+            %td= li.created_at.to_date
+            %td
+              \-
+              = number_to_currency li.amount
+              = link_to 'X', invoice_line_item_path(@invoice.id,li.id), method: :delete, id: "delete-coupon-#{li.id}", data: {confirm: 'Are you sure?'}
+      - if @offer.amount?
+        %tr
+          %td
+          %td
+            %strong Total
+          %td
+            %strong= number_to_currency @invoice.total
       - unless @invoice.payments.count.zero?
         %tr.pure-table-odd
           %td
@@ -65,9 +68,10 @@
             %strong Total Payments
           %td
             %strong - #{number_to_currency @invoice.balance_paid}
-      %tr
-        %td
-        %td
-          %strong Amount Remaining
-        %td
-          %strong= number_to_currency @invoice.balance_remaining
+      - if @offer.amount?
+        %tr
+          %td
+          %td
+            %strong Amount Remaining
+          %td
+            %strong= number_to_currency @invoice.balance_remaining
