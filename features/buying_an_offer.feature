@@ -13,6 +13,18 @@ Feature: Buying an Offer
     And I should see the apply coupon button
 
   @javascript
+  Scenario: User gives money to an offer. Thithe or Offering.
+    Given I am logged in with a Payment Method
+    And I am on an offer page that is a tithe or offering
+    Then I click on Purchase link
+    And I am on the invoice page
+    And I fill out the amount I want to pay
+    And I choose the Payment Method
+    And I click Make Payment
+    And I should be redirected to the Invoice page
+    And I should see a message I just paid for this offer
+
+  @javascript
   Scenario: User with a payment method buys an offer
     Given I am logged in with a Payment Method
     And I am on an offer page
