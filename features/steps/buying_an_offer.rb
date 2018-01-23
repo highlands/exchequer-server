@@ -34,7 +34,7 @@ class Spinach::Features::BuyingAnOffer < Spinach::FeatureSteps
     click_on('Make Payment')
   end
 
-  step 'I click on Purchase link' do
+  step 'I click on the Purchase link' do
     click_on('Purchase')
   end
 
