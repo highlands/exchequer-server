@@ -16,15 +16,8 @@ class Invoice < ApplicationRecord
   validates :due_on, presence: true
 
   def status
-    unless offer.amount
-      return zero_transactions? ? UNPAID : PAID
-    end
-
-    if offer.amount
-      return PAID if balance_remaining.zero?
-      return PARTIALLY_PAID if balance_remaining < total
-      return UNPAID
-    end
+    return status_for_not_offering if offer.amount
+    status_for_offering
   end
 
   def applied_coupon?
@@ -66,5 +59,17 @@ class Invoice < ApplicationRecord
 
   def balance_remaining
     total - balance_paid
+  end
+
+  private
+
+  def status_for_offering
+    zero_transactions? ? UNPAID : PAID
+  end
+
+  def status_for_not_offering
+    return PAID if balance_remaining.zero?
+    return PARTIALLY_PAID if balance_remaining < total
+    return UNPAID
   end
 end
