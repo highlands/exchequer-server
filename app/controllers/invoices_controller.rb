@@ -12,6 +12,6 @@ class InvoicesController < ApplicationController
     @invoice = current_user.invoices.find(params[:id])
     @offer = @invoice.offer
     @payment_methods = current_user.available_payment_methods
-    @balance_remaining = @invoice.balance_remaining
+    @balance_remaining = @invoice.balance_remaining if @offer.amount
   end
 end

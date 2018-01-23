@@ -2,13 +2,15 @@
   %fieldset
     %div.pure-u-1-4
       %h5 Payment
-      - if @offer.deferrable?
+      - if @offer.deferrable? && @offer.amount
         = number_field_tag :amount, @balance_remaining, {min: 0.0, max: @balance_remaining, class: "pure-input-1-4"}
       - else
         = hidden_field_tag :amount, @balance_remaining
+      - unless @offer.amount?
+        = number_field_tag :amount, 0, {min: 0.0, class: "pure-input-1-4"}
       = hidden_field_tag :offer_id, @offer.id
       = hidden_field_tag :invoice_id, @invoice.id
-      -if @payment_methods.any?
+      - if @payment_methods.any?
         %div
           %ul
             = collection_radio_buttons(nil, :payment_method_id, @payment_methods, :id, :to_s, required: :required, checked: @payment_methods.first.id) do |button|

@@ -16,9 +16,8 @@ class Invoice < ApplicationRecord
   validates :due_on, presence: true
 
   def status
-    return PAID if balance_remaining.zero?
-    return PARTIALLY_PAID if balance_remaining < total
-    UNPAID
+    return status_for_not_offering if offer.amount
+    status_for_offering
   end
 
   def applied_coupon?
@@ -42,11 +41,8 @@ class Invoice < ApplicationRecord
 
   def subtotal
     # Total not including coupons
-    if line_items.any?
-      line_items.offers.map(&:amount).sum
-    else
-      offer.amount
-    end
+    return line_items.offers.map(&:amount).sum if line_items.any?
+    offer.amount? ? offer.amount : 0
   end
 
   def total
@@ -60,5 +56,17 @@ class Invoice < ApplicationRecord
 
   def balance_remaining
     total - balance_paid
+  end
+
+  private
+
+  def status_for_offering
+    zero_transactions? ? UNPAID : PAID
+  end
+
+  def status_for_not_offering
+    return PAID if balance_remaining.zero?
+    return PARTIALLY_PAID if balance_remaining < total
+    return UNPAID
   end
 end

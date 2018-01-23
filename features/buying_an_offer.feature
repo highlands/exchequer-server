@@ -7,16 +7,28 @@ Feature: Buying an Offer
   Scenario: User can visit an invoice page
     Given I am logged in
     And I am on an offer page
-    When I click on Purchase link
+    When I click on the Purchase link
     Then I am on the invoice page
     And I should not see the Make Payment button
     And I should see the apply coupon button
 
   @javascript
+  Scenario: User pays money towards an offer that doesn't have an amount
+    Given I am logged in with a Payment Method
+    And I am on an offer page for an offer that doesn't have an amount
+    When I click on the Purchase link
+    Then I am on the invoice page
+    And I fill out the amount I want to pay
+    And I choose the Payment Method
+    When I click Make Payment
+    Then I should be redirected to the Invoice page
+    And I should see a message I just paid for this offer
+
+  @javascript
   Scenario: User with a payment method buys an offer
     Given I am logged in with a Payment Method
     And I am on an offer page
-    Then I click on Purchase link
+    Then I click on the Purchase link
     And I am on the invoice page
     And I fill out the amount I want to pay
     And I choose the Payment Method
@@ -28,7 +40,7 @@ Feature: Buying an Offer
   Scenario: User without a payment method attempts to buy an offer
     Given I am logged in
     And I am on an offer page
-    Then I click on Purchase link
+    Then I click on the Purchase link
     And I am on the invoice page
     And I should see a link to Add a Payment Method
     And I fill out the amount I want to pay
@@ -39,7 +51,7 @@ Feature: Buying an Offer
     Given I am logged in
     And I have a Payment Method
     And I am on an offer page from an undeferrable offer
-    When I click on Purchase link
+    When I click on the Purchase link
     Then I am on the invoice page
     And I choose the Payment Method
     And I click Pay full amount
@@ -51,7 +63,7 @@ Feature: Buying an Offer
     Given I am logged in
     And I have a Payment Method
     And I am on an offer page from an undeferrable offer
-    When I click on Purchase link
+    When I click on the Purchase link
     Then I am on the invoice page
     And I choose the Payment Method
     And I click Pay full amount
@@ -64,6 +76,6 @@ Feature: Buying an Offer
     Given I am logged in
     And I have a Payment Method
     And I am on an offer page from an undeferrable offer
-    When I click on Purchase link
+    When I click on the Purchase link
     Then I can see the Pay full amount button
     And I dont see the Make payment button
