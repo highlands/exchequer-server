@@ -41,11 +41,8 @@ class Invoice < ApplicationRecord
 
   def subtotal
     # Total not including coupons
-    if line_items.any?
-      line_items.offers.map(&:amount).sum
-    else
-      offer.amount? ? offer.amount : 0
-    end
+    return line_items.offers.map(&:amount).sum if line_items.any?
+    offer.amount? ? offer.amount : 0
   end
 
   def total
