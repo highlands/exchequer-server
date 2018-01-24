@@ -9,6 +9,6 @@ class Api::V1::ApiBaseController < ApplicationController
   end
 
   def unauthenticated_request
-    render json: { error: 'There is no application for this Api Key' }, status: 401
+    render json: { error: 'This Api Key does not exist.' }, status: 401
   end
 end
