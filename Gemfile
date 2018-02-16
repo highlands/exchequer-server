@@ -50,6 +50,14 @@ gem 'purecss-sass', '~> 0.6.2'
 ## Documentation
 gem 'apitome', '~>0.1.0'
 
+# Capistrano and deployment
+gem 'passenger'
+gem 'capistrano', '~> 3.10.1'
+gem 'capistrano-bundler', '~> 1.3'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
+gem 'capistrano-passenger'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
